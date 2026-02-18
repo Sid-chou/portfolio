@@ -21,8 +21,13 @@ function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav border-b border-white/5 h-20 flex items-center">
       <div className="max-w-7xl w-full mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <div className="font-pixel text-xs tracking-tight text-white hover:text-primary cursor-pointer">
-          hi i m alex
+        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/20 hover:border-primary transition-colors cursor-pointer">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
+            alt="Alex Avatar"
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
         </div>
         <div className="flex items-center space-x-8 hidden md:flex">
           <a href="#work" className="text-[13px] font-sans font-medium uppercase tracking-wide hover:text-primary transition-colors text-gray-300">WORK</a>
@@ -290,11 +295,11 @@ function About() {
   );
 }
 
-import { fetchGitHubActivity, fetchGitHubStats } from './utils/github';
+import { fetchGitHubStats } from './utils/github';
 import { config } from './config';
+import { GitHubCalendar } from 'react-github-calendar';
 
 function GithubActivity() {
-  const [cells, setCells] = useState<number[]>([]);
   const [stats, setStats] = useState({ repos: 0, followers: 0, stars: 0 });
   const [loading, setLoading] = useState(true);
 
@@ -302,11 +307,7 @@ function GithubActivity() {
     const loadData = async () => {
       setLoading(true);
       try {
-        const [activityData, statsData] = await Promise.all([
-          fetchGitHubActivity(),
-          fetchGitHubStats()
-        ]);
-        setCells(activityData);
+        const statsData = await fetchGitHubStats();
         setStats({
           repos: statsData.repos,
           followers: statsData.followers,
@@ -322,48 +323,62 @@ function GithubActivity() {
     loadData();
   }, []);
 
+  // GitHub-style dark theme colors (matches github.com dark mode exactly)
+  const githubTheme = {
+    dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353']
+  };
+
   return (
     <section className="mb-32">
       <div className="flex items-center gap-4 mb-8">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase">
-          // GITHUB_ACTIVITY ({config.github.username})
+          // GITHUB_ACTIVITY
         </h3>
         <div className="h-px bg-gray-800 flex-grow"></div>
       </div>
-      <div className="w-full bg-[#0a0a12] border border-gray-800 p-6 md:p-8">
-        <div className="heatmap-grid mb-8 w-full overflow-hidden min-h-[100px] flex items-center justify-center relative">
-          {loading ? (
-            <div className="font-pixel text-xs text-primary animate-pulse">LOADING_DATA...</div>
-          ) : (
-            <div className="heatmap-grid w-full"> {/* Re-add grid container for cells */}
-              {cells.map((opacity, i) => {
-                let colorClass = 'bg-gray-800';
-                if (opacity > 0.9) colorClass = 'bg-green-500';
-                else if (opacity > 0.6) colorClass = 'bg-green-700';
-                else if (opacity > 0.3) colorClass = 'bg-green-900';
-                // Use inline style for opacity if needed, or just classes. 
-                // Original code used threshold classes.
-                return <div key={i} className={`heatmap-cell ${colorClass}`} title={`Activity Level: ${opacity.toFixed(1)}`}></div>
-              })}
-            </div>
-          )}
+      <div className="w-full bg-[#0d1117] border border-[#30363d] rounded-md p-6 md:p-8">
+        {/* Real GitHub Contribution Calendar */}
+        <div className="mb-6 w-full overflow-x-auto">
+          <GitHubCalendar
+            username={config.github.username}
+            colorScheme="dark"
+            theme={githubTheme}
+            fontSize={12}
+            blockSize={13}
+            blockMargin={3}
+            blockRadius={2}
+            labels={{
+              totalCount: '{{count}} contributions in the last year',
+            }}
+            style={{ width: '100%' }}
+          />
         </div>
-        <div className="flex flex-col md:flex-row gap-6 md:gap-12 pt-4 border-t border-gray-800">
+        <div className="text-center mb-6">
+          <a
+            href={`https://github.com/${config.github.username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-[#58a6ff] hover:underline transition-colors"
+          >
+            @{config.github.username}
+          </a>
+        </div>
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12 pt-4 border-t border-[#30363d]">
           <div className="flex items-center gap-3">
-            <span className="text-gray-500 uppercase text-xs font-pixel tracking-wider">Public Repos</span>
-            <span className="text-white font-code text-xl bg-gray-900 px-3 py-1 border border-gray-700 rounded-sm">
+            <span className="text-[#8b949e] uppercase text-xs font-pixel tracking-wider">Public Repos</span>
+            <span className="text-[#c9d1d9] font-code text-xl bg-[#161b22] px-3 py-1 border border-[#30363d] rounded-md">
               {loading ? '...' : stats.repos}
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-gray-500 uppercase text-xs font-pixel tracking-wider">Stars Earned</span>
-            <span className="text-white font-code text-xl bg-gray-900 px-3 py-1 border border-gray-700 rounded-sm">
+            <span className="text-[#8b949e] uppercase text-xs font-pixel tracking-wider">Stars Earned</span>
+            <span className="text-[#c9d1d9] font-code text-xl bg-[#161b22] px-3 py-1 border border-[#30363d] rounded-md">
               {loading ? '...' : stats.stars}
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-gray-500 uppercase text-xs font-pixel tracking-wider">Followers</span>
-            <span className="text-white font-code text-xl bg-gray-900 px-3 py-1 border border-gray-700 rounded-sm">
+            <span className="text-[#8b949e] uppercase text-xs font-pixel tracking-wider">Followers</span>
+            <span className="text-[#c9d1d9] font-code text-xl bg-[#161b22] px-3 py-1 border border-[#30363d] rounded-md">
               {loading ? '...' : stats.followers}
             </span>
           </div>
@@ -372,6 +387,7 @@ function GithubActivity() {
     </section>
   );
 }
+
 
 function Contact() {
   return (
