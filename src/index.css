@@ -1,21 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f0f1b;
+  --color-background: #0a0a0a;
   --color-card-dark: #111111;
   --color-border-dark: #2a2a3e;
   --color-primary: #53c0f0;
   --color-secondary: #ffd700;
-  --color-muted: #94a3b8;
+  --color-muted: #6b7280;
   --color-gameboy-blue: #53c0f0;
+  --color-sleek-bg: #0a0a0a;
+  --color-sleek-card: #111118;
+  --color-sleek-border: rgba(255, 255, 255, 0.1);
 
   --font-pixel: "Press Start 2P", cursive;
   --font-code: "VT323", monospace;
   --font-sans: "Inter", sans-serif;
 
-  --shadow-pixel-hard: 4px 4px 0px 0px rgba(0,0,0,1);
-  --shadow-pixel-card: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-pixel-hard: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-pixel-card: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --shadow-glow-yellow: 0 0 15px rgba(255, 215, 0, 0.3);
+
+  --spacing-120: 120px;
 }
 
 /* Custom Utilities */
@@ -24,40 +29,19 @@
   backdrop-filter: blur(12px);
 }
 
-.slanted-card:nth-child(odd) {
-  transform: rotate(-2deg);
-}
-
-.slanted-card:nth-child(even) {
-  transform: rotate(2deg);
-}
-
-.slanted-card:hover {
-  transform: scale(1.02) rotate(0deg);
-  z-index: 10;
-}
-
-.heatmap-grid {
-  display: grid;
-  grid-template-columns: repeat(52, 1fr);
-  gap: 4px;
-}
-
-.heatmap-cell {
-  aspect-ratio: 1;
-  border-radius: 2px;
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0f0f1b;
+  background: #0a0a0a;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #333;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

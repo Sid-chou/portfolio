@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { fetchGitHubStats } from './utils/github';
+import { config } from './config';
+import { GitHubCalendar } from 'react-github-calendar';
 
 export default function App() {
   return (
     <>
       <Navbar />
-      <main class="pt-32 pb-24 px-6 lg:px-8 max-w-7xl mx-auto">
+      <main className="pt-32 pb-24">
         <Hero />
         <Projects />
         <Experience />
@@ -17,161 +20,266 @@ export default function App() {
   );
 }
 
+/* ─── Navbar ─── */
 function Navbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 glass-nav border-b border-white/5 h-20 flex items-center">
-      <div className="max-w-7xl w-full mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/20 hover:border-primary transition-colors cursor-pointer">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
-            alt="Alex Avatar"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
+    <nav className="fixed top-0 w-full z-50 bg-transparent h-20 flex items-center">
+      <div className="w-full px-6 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <div className="relative w-8 h-8 rounded-full bg-[#ffd700] overflow-hidden flex items-center justify-center border border-[#ffd700]/20">
+            <img
+              alt="Small Avatar"
+              className="w-full h-full object-cover opacity-90 mix-blend-multiply"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="flex items-center space-x-6">
+            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#work">Work</a>
+            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#projects">Projects</a>
+            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#about">About</a>
+            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#contact">Contact</a>
+          </div>
         </div>
-        <div className="flex items-center space-x-8 hidden md:flex">
-          <a href="#work" className="text-[13px] font-sans font-medium uppercase tracking-wide hover:text-primary transition-colors text-gray-300">WORK</a>
-          <a href="#projects" className="text-[13px] font-sans font-medium uppercase tracking-wide hover:text-primary transition-colors text-gray-300">PROJECTS</a>
-          <a href="#about" className="text-[13px] font-sans font-medium uppercase tracking-wide hover:text-primary transition-colors text-gray-300">ABOUT</a>
-          <a href="#contact" className="text-[13px] font-sans font-medium uppercase tracking-wide hover:text-primary transition-colors text-gray-300">CONTACT</a>
+        <div className="flex items-center gap-4">
+          <button className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-[#1a1a1a] border border-[#333] rounded-md text-xs text-muted hover:border-gray-600 transition-colors">
+            <span className="material-symbols-outlined text-[16px]">search</span>
+            <span>Search</span>
+            <span className="bg-[#333] px-1.5 py-0.5 rounded text-[10px] text-gray-400">Ctrl K</span>
+          </button>
+          <button className="text-muted hover:text-white transition-colors">
+            <span className="material-symbols-outlined text-[20px]">dark_mode</span>
+          </button>
         </div>
-        {/* Mobile Menu Icon Placeholder - could add functionality if needed, but sticking to design */}
       </div>
     </nav>
   );
 }
 
+/* ─── Hero ─── */
 function Hero() {
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center items-center text-center relative mb-32">
-      <div className="mb-8 relative">
-        <div className="w-16 h-16 rounded-full bg-gray-800 border-2 border-white shadow-glow-yellow overflow-hidden relative mx-auto">
+    <section className="max-w-[760px] mx-auto px-6 mb-24 flex flex-col items-start text-left">
+      {/* Avatar with green "online" dot */}
+      <div className="mb-8 relative group">
+        <div className="w-20 h-20 rounded-full bg-[#ffd700] overflow-hidden relative shadow-lg shadow-[#ffd700]/10 ring-4 ring-black">
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
             alt="Alex Avatar"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover mix-blend-multiply"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
             referrerPolicy="no-referrer"
           />
         </div>
+        <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background z-10"></div>
       </div>
-      <h1 className="font-sans font-bold text-white text-5xl md:text-[52px] leading-tight mb-2">
-        Hi, I'm Alex —
-      </h1>
-      <h2 className="font-sans font-bold text-gray-500 text-5xl md:text-[52px] leading-tight mb-8">
-        A Frontend Developer.
-      </h2>
-      <div className="max-w-2xl mb-10 mx-auto">
-        <p className="text-gray-400 text-lg leading-relaxed mb-6">
-          I build accessible, pixel-perfect, and performant web applications. Passionate about blending retro aesthetics with modern UI architecture.
+
+      {/* Headings */}
+      <div className="mb-6">
+        <h1 className="font-sans font-bold text-white text-[44px] leading-tight tracking-tight">
+          Hi, I'm Alex —
+        </h1>
+        <h2 className="font-sans font-medium text-muted text-[44px] leading-tight tracking-tight">
+          A Frontend Developer.
+        </h2>
+      </div>
+
+      {/* Description with inline tech badges */}
+      <div className="max-w-xl mb-10">
+        <p className="text-muted text-[16px] leading-relaxed font-sans">
+          I'm a software engineer specialized in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at{' '}
+          <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+            <i className="devicon-react-original text-[#61dafb] text-[14px]"></i> React
+          </span>,{' '}
+          <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+            <i className="devicon-nextjs-original text-white text-[14px]"></i> Next.js
+          </span> and{' '}
+          <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+            <i className="devicon-tailwindcss-original text-[#38bdf8] text-[14px]"></i> Tailwind
+          </span>.
         </p>
-        <div className="flex flex-wrap gap-3 justify-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#1a1a2e] border border-gray-700 text-sm text-gray-300 font-medium rounded-none hover:border-primary transition-colors cursor-default">
-            <i className="devicon-typescript-plain text-[#3178c6]"></i> TypeScript
-          </span>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#1a1a2e] border border-gray-700 text-sm text-gray-300 font-medium rounded-none hover:border-primary transition-colors cursor-default">
-            <i className="devicon-react-original text-[#61dafb]"></i> React
-          </span>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#1a1a2e] border border-gray-700 text-sm text-gray-300 font-medium rounded-none hover:border-primary transition-colors cursor-default">
-            <i className="devicon-nextjs-original text-white"></i> Next.js
-          </span>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#1a1a2e] border border-gray-700 text-sm text-gray-300 font-medium rounded-none hover:border-primary transition-colors cursor-default">
-            <i className="devicon-tailwindcss-original text-[#38bdf8]"></i> Tailwind
-          </span>
-        </div>
       </div>
-      <div className="flex flex-wrap gap-6 mb-12 justify-center">
-        <a href="#" className="px-8 py-3.5 bg-transparent border border-white text-white font-sans text-sm font-semibold uppercase tracking-wide hover:bg-white hover:text-black transition-all shadow-pixel-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none">
+
+      {/* CTA Buttons */}
+      <div className="flex flex-wrap gap-4 mb-10">
+        <a className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111] border border-white/20 text-white font-sans text-[14px] font-medium rounded-lg hover:bg-white hover:text-black transition-all hover:border-white group" href="#">
+          <span className="material-symbols-outlined text-[18px] group-hover:text-black text-gray-400">description</span>
           Resume / CV
         </a>
-        <a href="#contact" className="px-8 py-3.5 bg-transparent border border-white text-white font-sans text-sm font-semibold uppercase tracking-wide hover:bg-white hover:text-black transition-all shadow-pixel-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none">
+        <a className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111] border border-white/20 text-white font-sans text-[14px] font-medium rounded-lg hover:bg-white hover:text-black transition-all hover:border-white group" href="#contact">
+          <span className="material-symbols-outlined text-[18px] group-hover:text-black text-gray-400">mail</span>
           Get in Touch
         </a>
       </div>
-      <div className="flex items-center gap-6 justify-center">
-        <a href="#" className="text-gray-400 hover:text-white transition-colors">
-          <i className="devicon-twitter-original text-xl"></i>
+
+      {/* Social Links */}
+      <div className="flex items-center gap-6 mb-16">
+        <a className="text-gray-500 hover:text-white transition-colors" href="#">
+          <i className="devicon-twitter-original text-[18px]"></i>
         </a>
-        <a href="#" className="text-gray-400 hover:text-white transition-colors">
-          <i className="devicon-linkedin-plain text-xl"></i>
+        <a className="text-gray-500 hover:text-white transition-colors" href="#">
+          <i className="devicon-linkedin-plain text-[18px]"></i>
         </a>
-        <a href="#" className="text-gray-400 hover:text-white transition-colors">
-          <i className="devicon-github-original text-xl"></i>
+        <a className="text-gray-500 hover:text-white transition-colors" href="#">
+          <i className="devicon-github-original text-[18px]"></i>
         </a>
-        <a href="#" className="text-gray-400 hover:text-white transition-colors">
-          <i className="devicon-pinterest-plain text-xl"></i>
+        <a className="text-gray-500 hover:text-white transition-colors" href="#">
+          <i className="devicon-youtube-plain text-[18px]"></i>
         </a>
+      </div>
+
+      {/* Spotify "Last Played" widget */}
+      <div className="w-full max-w-[700px] bg-[#111111] border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:border-white/20 transition-colors">
+        <div className="w-12 h-12 flex-shrink-0 bg-[#1ed760]/10 rounded-md flex items-center justify-center">
+          <i className="devicon-spotify-plain text-[#1ed760] text-2xl"></i>
+        </div>
+        <div className="flex-grow min-w-0">
+          <p className="text-[11px] uppercase tracking-wider text-gray-500 mb-0.5 font-medium">Last Played</p>
+          <div className="flex items-center gap-2 overflow-hidden">
+            <span className="text-sm font-medium text-gray-200 truncate">Midnight City</span>
+            <span className="text-sm text-gray-500">•</span>
+            <span className="text-sm text-gray-500 truncate">M83</span>
+          </div>
+        </div>
+        <div className="hidden sm:block">
+          <span className="material-symbols-outlined text-gray-500">graphic_eq</span>
+        </div>
       </div>
     </section>
   );
 }
 
+/* ─── Projects ─── */
 function Projects() {
   const projects = [
     {
-      title: "Neon Analytics",
-      desc: "Real-time data visualization dashboard with dark mode support.",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4"
+      title: "NotesBuddy",
+      desc: "AI-powered note taking application that automatically categorizes your thoughts. Features real-time sync and markdown support for developer productivity.",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4",
+      gradient: "from-indigo-900/40 via-purple-900/40 to-pink-900/20",
+      tech: [
+        { icon: "devicon-nextjs-original", color: "text-white", name: "Next.js" },
+        { icon: "devicon-typescript-plain", color: "text-[#3178c6]", name: "TypeScript" },
+        { icon: "devicon-tailwindcss-original", color: "text-[#38bdf8]", name: "Tailwind" },
+        { icon: "devicon-prisma-original", color: "text-white", name: "Prisma" },
+      ],
+      status: "operational",
     },
     {
-      title: "Pixel Editor",
-      desc: "Browser-based sprite editor for game devs with layer support.",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAh60At3NHnzPmTlG7GlD-w7VEqZadH9A0y7x9pmdEfdcIpbm7UTQkK6izA7JhSQC0Aqy39ddkfsjHpH4UiO6fsH35eXZvIJ6pkHOLoPv2NhjdjnXkt11m5QU5sEqXcaVKbvaB5r1Y2BKDjfxYJYPegaxQGqEUkWzCQtzvKhgzxt8ueETDGFd6hfXMxiY7nOKRVL8n8xi1IvPqd_hE-MzwFLbPJz_nylLBSKpoH0acABy3-nVtIjurzsh-pZwya8FwzU44_TZSDr2M"
+      title: "Appwrite MCP Server",
+      desc: "A custom Model Context Protocol server implementation for Appwrite, enabling LLMs to directly interact with your Appwrite database and functions securely.",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAh60At3NHnzPmTlG7GlD-w7VEqZadH9A0y7x9pmdEfdcIpbm7UTQkK6izA7JhSQC0Aqy39ddkfsjHpH4UiO6fsH35eXZvIJ6pkHOLoPv2NhjdjnXkt11m5QU5sEqXcaVKbvaB5r1Y2BKDjfxYJYPegaxQGqEUkWzCQtzvKhgzxt8ueETDGFd6hfXMxiY7nOKRVL8n8xi1IvPqd_hE-MzwFLbPJz_nylLBSKpoH0acABy3-nVtIjurzsh-pZwya8FwzU44_TZSDr2M",
+      gradient: "from-pink-900/40 via-red-900/40 to-orange-900/20",
+      tech: [
+        { icon: "devicon-nodejs-plain", color: "text-[#339933]", name: "Node.js" },
+        { icon: "devicon-appwrite-plain", color: "text-[#f02e65]", name: "Appwrite" },
+        { icon: "devicon-docker-plain", color: "text-[#2496ed]", name: "Docker" },
+      ],
+      status: "operational",
     },
     {
-      title: "Retro Chat",
-      desc: "Websocket powered chat app with IRC style commands.",
-      noSignal: true
+      title: "Syncify",
+      desc: "Real-time collaborative whiteboard for remote teams. Features infinite canvas, shape recognition, and live cursor tracking for up to 50 users.",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4",
+      gradient: "from-cyan-900/40 via-blue-900/40 to-purple-900/20",
+      tech: [
+        { icon: "devicon-react-original", color: "text-[#61dafb]", name: "React" },
+        { icon: "devicon-socketio-original", color: "text-white", name: "Socket.io" },
+        { icon: "devicon-redux-original", color: "text-[#764abc]", name: "Redux" },
+      ],
+      status: "operational",
+      previewUnavailable: true,
     },
     {
-      title: "Crypto Folio",
-      desc: "Minimalist cryptocurrency tracker using CoinGecko API.",
-      noSignal: true
-    }
+      title: "Pasandida Aurat",
+      desc: "A cultural storytelling platform dedicated to South Asian narratives. Focused on immersive reading experiences with subtle parallax effects.",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc",
+      gradient: "from-amber-900/40 via-orange-900/40 to-yellow-900/20",
+      tech: [
+        { icon: "devicon-vuejs-plain", color: "text-[#4fc08d]", name: "Vue.js" },
+        { icon: "devicon-nuxtjs-plain", color: "text-white", name: "Nuxt" },
+        { icon: "devicon-sass-original", color: "text-[#cc6699]", name: "Sass" },
+      ],
+      status: "building",
+    },
   ];
 
   return (
-    <section id="projects" className="mb-32">
-      <div className="flex items-center gap-4 mb-16">
-        <h3 className="font-pixel text-sm text-primary tracking-widest uppercase">
-          // LATEST_QUESTS
-        </h3>
-        <div className="h-px bg-gray-800 flex-grow"></div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
-        {projects.map((project, index) => (
-          <article key={index} className="slanted-card bg-[#111111] border border-gray-800 shadow-pixel-card p-4 transition-all duration-300 flex flex-col h-full group">
-            <div className="aspect-video bg-gray-900 mb-4 overflow-hidden border border-gray-800 relative group-hover:border-primary/50 transition-colors">
-              {project.img ? (
+    <section className="mb-120 bg-sleek-bg py-16 px-6" id="projects">
+      <div className="max-w-[1000px] mx-auto">
+        <div className="mb-10 text-left">
+          <span className="block text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-gray-500 mb-2">Featured</span>
+          <h2 className="text-3xl font-sans font-bold text-white tracking-tight">## Projects</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {projects.map((project, index) => (
+            <article key={index} className="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
+              {/* Image */}
+              <div className={`h-[200px] w-full relative overflow-hidden bg-gradient-to-br ${project.gradient}`}>
+                {project.previewUnavailable && (
+                  <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-sans text-xs uppercase tracking-widest z-10">Preview Unavailable</div>
+                )}
                 <img
-                  src={project.img}
                   alt={project.title}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                  className={`w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 ${project.previewUnavailable ? 'opacity-30' : 'opacity-90'}`}
+                  src={project.img}
                   referrerPolicy="no-referrer"
                 />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-pixel text-[10px]">NO_SIGNAL</div>
-              )}
-            </div>
-            <h4 className="font-sans font-bold text-lg text-white mb-2">{project.title}</h4>
-            <p className="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">{project.desc}</p>
-            <div className="flex gap-3 mt-auto">
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors">
-                <span className="material-symbols-outlined text-lg">open_in_new</span>
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors">
-                <i className="devicon-github-original text-lg"></i>
-              </a>
-            </div>
-          </article>
-        ))}
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
+              </div>
+              {/* Content */}
+              <div className="p-5 flex flex-col flex-grow">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-[18px] font-bold text-white font-sans">{project.title}</h3>
+                  <div className="flex gap-3">
+                    <a className="text-gray-500 hover:text-white transition-colors" href="#">
+                      <span className="material-symbols-outlined text-[20px]">language</span>
+                    </a>
+                    <a className="text-gray-500 hover:text-white transition-colors" href="#">
+                      <i className="devicon-github-original text-[18px]"></i>
+                    </a>
+                  </div>
+                </div>
+                <p className="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">{project.desc}</p>
+                <div className="mt-auto">
+                  <p className="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((t, i) => (
+                      <i key={i} className={`${t.icon} text-[20px] ${t.color}`} title={t.name}></i>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${project.status === 'building' ? 'animate-pulse bg-red-500' : 'animate-ping bg-green-400'}`}></span>
+                        <span className={`relative inline-flex rounded-full h-2 w-2 ${project.status === 'building' ? 'bg-red-600' : 'bg-green-500'}`}></span>
+                      </span>
+                      <span className="text-[12px] text-gray-400 font-sans">
+                        {project.status === 'building' ? 'Building' : 'All Systems Operational'}
+                      </span>
+                    </div>
+                    <a className="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
+                      View Details <span className="text-xs">→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="mt-10 text-right">
+          <a className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white transition-colors group" href="#">
+            Show all projects <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
       </div>
     </section>
   );
 }
 
+/* ─── Experience ─── */
 function Experience() {
   return (
-    <section id="work" className="mb-32">
+    <section className="max-w-[760px] mx-auto px-6 mb-120" id="work">
       <div className="flex items-center gap-4 mb-16">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase whitespace-nowrap">
           // EXPERIENCE_LOG
@@ -179,6 +287,7 @@ function Experience() {
         <div className="h-px bg-gray-800 w-full"></div>
       </div>
       <div className="space-y-6">
+        {/* Job 1 */}
         <div className="w-full bg-[#111111] border border-gray-800 p-8 flex flex-col md:flex-row gap-8 items-start hover:border-gray-600 transition-colors">
           <div className="flex-shrink-0">
             <div className="w-10 h-10 bg-[#1a1a2e] border border-gray-700 flex items-center justify-center">
@@ -212,6 +321,7 @@ function Experience() {
           </div>
         </div>
 
+        {/* Job 2 */}
         <div className="w-full bg-[#111111] border border-gray-800 p-8 flex flex-col md:flex-row gap-8 items-start hover:border-gray-600 transition-colors">
           <div className="flex-shrink-0">
             <div className="w-10 h-10 bg-[#1a1a2e] border border-gray-700 flex items-center justify-center">
@@ -249,44 +359,45 @@ function Experience() {
   );
 }
 
+/* ─── About ─── */
 function About() {
   return (
-    <section id="about" className="mb-32">
+    <section className="max-w-[760px] mx-auto px-6 mb-120" id="about">
       <div className="flex items-center gap-4 mb-16">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase">
           // ME
         </h3>
         <div className="h-px bg-gray-800 flex-grow"></div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-        <div className="md:col-span-4 flex justify-center md:justify-start">
-          <div className="w-[280px] h-[280px] rounded-full bg-gray-900 border-4 border-white/10 shadow-glow-yellow overflow-hidden relative">
+      <div className="flex flex-col md:flex-row gap-12 items-center">
+        <div className="flex-shrink-0">
+          <div className="w-[200px] h-[200px] rounded-full bg-gray-900 border-4 border-white/10 shadow-glow-yellow overflow-hidden relative">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
               alt="Alex Large Avatar"
               className="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
               referrerPolicy="no-referrer"
             />
           </div>
         </div>
-        <div className="md:col-span-8">
-          <h3 className="text-4xl font-bold text-white mb-6 font-sans">Alex Dev.</h3>
+        <div className="flex-grow">
+          <h3 className="text-3xl font-bold text-white mb-6 font-sans">Alex Dev.</h3>
           <div className="text-gray-400 text-lg leading-relaxed space-y-4 mb-8">
             <p>I am a digital craftsman focused on the intersection of design and engineering. With a background in traditional art, I approach every line of code as a brushstroke on a digital canvas.</p>
             <p>When I'm not coding, you can find me exploring retro game mechanics, brewing specialty coffee, or contributing to open source projects.</p>
           </div>
           <div className="flex flex-wrap gap-4">
-            <div className="border border-gray-700 bg-[#111111] px-6 py-3 flex items-center gap-3">
-              <i className="devicon-react-original text-2xl text-[#61dafb]"></i>
-              <span className="font-sans font-semibold text-white">React</span>
+            <div className="border border-gray-700 bg-[#111111] px-4 py-2 flex items-center gap-2">
+              <i className="devicon-react-original text-xl text-[#61dafb]"></i>
+              <span className="font-sans font-medium text-sm text-white">React</span>
             </div>
-            <div className="border border-gray-700 bg-[#111111] px-6 py-3 flex items-center gap-3">
-              <i className="devicon-spring-plain text-2xl text-green-500"></i>
-              <span className="font-sans font-semibold text-white">Spring Boot</span>
+            <div className="border border-gray-700 bg-[#111111] px-4 py-2 flex items-center gap-2">
+              <i className="devicon-spring-plain text-xl text-green-500"></i>
+              <span className="font-sans font-medium text-sm text-white">Spring Boot</span>
             </div>
-            <div className="border border-gray-700 bg-[#111111] px-6 py-3 flex items-center gap-3">
-              <i className="devicon-javascript-plain text-2xl text-yellow-400"></i>
-              <span className="font-sans font-semibold text-white">JavaScript</span>
+            <div className="border border-gray-700 bg-[#111111] px-4 py-2 flex items-center gap-2">
+              <i className="devicon-javascript-plain text-xl text-yellow-400"></i>
+              <span className="font-sans font-medium text-sm text-white">JavaScript</span>
             </div>
           </div>
         </div>
@@ -295,10 +406,7 @@ function About() {
   );
 }
 
-import { fetchGitHubStats } from './utils/github';
-import { config } from './config';
-import { GitHubCalendar } from 'react-github-calendar';
-
+/* ─── GitHub Activity (REAL DATA via react-github-calendar) ─── */
 function GithubActivity() {
   const [stats, setStats] = useState({ repos: 0, followers: 0, stars: 0 });
   const [loading, setLoading] = useState(true);
@@ -323,13 +431,12 @@ function GithubActivity() {
     loadData();
   }, []);
 
-  // GitHub-style dark theme colors (matches github.com dark mode exactly)
   const githubTheme = {
     dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353']
   };
 
   return (
-    <section className="mb-32">
+    <section className="max-w-[760px] mx-auto px-6 mb-120">
       <div className="flex items-center gap-4 mb-8">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase">
           // GITHUB_ACTIVITY
@@ -388,10 +495,10 @@ function GithubActivity() {
   );
 }
 
-
+/* ─── Contact ─── */
 function Contact() {
   return (
-    <section id="contact" className="mb-24 relative">
+    <section className="max-w-[760px] mx-auto px-6 mb-24 relative" id="contact">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <div className="mb-12">
           <p className="font-pixel text-gray-500 mb-6 tracking-widest text-xs uppercase">Save_Point</p>
@@ -419,13 +526,13 @@ function Contact() {
           </div>
         </form>
         <div className="mt-16 flex justify-center gap-6">
-          <a href="#" className="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors">
+          <a className="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors" href="#">
             <i className="devicon-twitter-original text-gray-500 group-hover:text-primary transition-colors"></i>
           </a>
-          <a href="#" className="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors">
+          <a className="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors" href="#">
             <i className="devicon-linkedin-plain text-gray-500 group-hover:text-primary transition-colors"></i>
           </a>
-          <a href="#" className="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors">
+          <a className="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors" href="#">
             <i className="devicon-github-original text-gray-500 group-hover:text-primary transition-colors"></i>
           </a>
         </div>
@@ -434,6 +541,7 @@ function Contact() {
   );
 }
 
+/* ─── Footer ─── */
 function Footer() {
   return (
     <footer className="py-12 border-t border-white/5 bg-background text-center relative overflow-hidden">
@@ -444,9 +552,9 @@ function Footer() {
         <div className="flex items-center gap-6 text-gray-500">
           <span className="text-xs font-sans">© 2023 Alex Portfolio</span>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-primary transition-colors text-lg"><i className="devicon-twitter-original"></i></a>
-            <a href="#" className="hover:text-primary transition-colors text-lg"><i className="devicon-github-original"></i></a>
-            <a href="#" className="hover:text-primary transition-colors text-lg"><i className="devicon-linkedin-plain"></i></a>
+            <a className="hover:text-primary transition-colors text-lg" href="#"><i className="devicon-twitter-original"></i></a>
+            <a className="hover:text-primary transition-colors text-lg" href="#"><i className="devicon-github-original"></i></a>
+            <a className="hover:text-primary transition-colors text-lg" href="#"><i className="devicon-linkedin-plain"></i></a>
           </div>
         </div>
       </div>

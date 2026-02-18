@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alex | Frontend Developer Portfolio</title>
+<meta content="Minimal personal developer portfolio with retro pixel accents." name="description"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Press+Start+2P&amp;family=VT323&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#0a0a0a",
+                        "card-dark": "#111111",
+                        "border-dark": "#2a2a3e",
+                        primary: "#53c0f0", 
+                        secondary: "#ffd700", // Yellow glow
+                        muted: "#6b7280",
+                        "gameboy-blue": "#53c0f0",
+                        "sleek-bg": "#0a0a0a",
+                        "sleek-card": "#111118",
+                        "sleek-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        code: ['"VT323"', 'monospace'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'pixel-hard': '4px 4px 0px 0px rgba(0,0,0,1)',
+                        'pixel-card': '4px 4px 0px 0px rgba(0,0,0,1)',
+                        'glow-yellow': '0 0 15px rgba(255, 215, 0, 0.3)',
+                    },
+                    spacing: {
+                        '120': '120px',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f1b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(52, 1fr);
+            gap: 4px;
+        }
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background text-white font-sans antialiased selection:bg-secondary selection:text-black">
+<nav class="fixed top-0 w-full z-50 bg-transparent h-20 flex items-center">
+<div class="w-full px-6 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="relative w-8 h-8 rounded-full bg-[#ffd700] overflow-hidden flex items-center justify-center border border-[#ffd700]/20">
+<img alt="Small Avatar" class="w-full h-full object-cover opacity-90 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"/>
+</div>
+<div class="flex items-center space-x-6">
+<a class="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#work">Work</a>
+<a class="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#blogs">Blogs</a>
+<a class="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#projects">Projects</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-[#1a1a1a] border border-[#333] rounded-md text-xs text-muted hover:border-gray-600 transition-colors">
+<span class="material-symbols-outlined text-[16px]">search</span>
+<span>Search</span>
+<span class="bg-[#333] px-1.5 py-0.5 rounded text-[10px] text-gray-400">Ctrl K</span>
+</button>
+<button class="text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24">
+<section class="max-w-[760px] mx-auto px-6 mb-24 flex flex-col items-start text-left">
+<div class="mb-8 relative group">
+<div class="w-20 h-20 rounded-full bg-[#ffd700] overflow-hidden relative shadow-lg shadow-[#ffd700]/10 ring-4 ring-black">
+<img alt="Alex Avatar" class="w-full h-full object-cover mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"/>
+</div>
+<div class="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background z-10"></div>
+</div>
+<div class="mb-6">
+<h1 class="font-sans font-bold text-white text-[44px] leading-tight tracking-tight">
+                Hi, I'm Alex —
+            </h1>
+<h2 class="font-sans font-medium text-muted text-[44px] leading-tight tracking-tight">
+                A Frontend Developer.
+            </h2>
+</div>
+<div class="max-w-xl mb-10">
+<p class="text-muted text-[16px] leading-relaxed font-sans">
+                I'm a software engineer specialized in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at 
+                <span class="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+<i class="devicon-react-original text-[#61dafb] text-[14px]"></i> React
+                </span>,
+                <span class="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+<i class="devicon-nextjs-original text-white text-[14px]"></i> Next.js
+                </span> and 
+                <span class="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+<i class="devicon-tailwindcss-original text-[#38bdf8] text-[14px]"></i> Tailwind
+                </span>.
+            </p>
+</div>
+<div class="flex flex-wrap gap-4 mb-10">
+<a class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111] border border-white/20 text-white font-sans text-[14px] font-medium rounded-lg hover:bg-white hover:text-black transition-all hover:border-white group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:text-black text-gray-400">description</span>
+                Resume / CV
+            </a>
+<a class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111] border border-white/20 text-white font-sans text-[14px] font-medium rounded-lg hover:bg-white hover:text-black transition-all hover:border-white group" href="#contact">
+<span class="material-symbols-outlined text-[18px] group-hover:text-black text-gray-400">mail</span>
+                Get in Touch
+            </a>
+</div>
+<div class="flex items-center gap-6 mb-16">
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-twitter-original text-[18px]"></i>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-linkedin-plain text-[18px]"></i>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-github-original text-[18px]"></i>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-youtube-plain text-[18px]"></i>
+</a>
+</div>
+<div class="w-full max-w-[700px] bg-[#111111] border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:border-white/20 transition-colors">
+<div class="w-12 h-12 flex-shrink-0 bg-[#1ed760]/10 rounded-md flex items-center justify-center">
+<i class="devicon-spotify-plain text-[#1ed760] text-2xl"></i>
+</div>
+<div class="flex-grow min-w-0">
+<p class="text-[11px] uppercase tracking-wider text-gray-500 mb-0.5 font-medium">Last Played</p>
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="text-sm font-medium text-gray-200 truncate">Midnight City</span>
+<span class="text-sm text-gray-500">•</span>
+<span class="text-sm text-gray-500 truncate">M83</span>
+</div>
+</div>
+<div class="hidden sm:block">
+<span class="material-symbols-outlined text-gray-500">graphic_eq</span>
+</div>
+</div>
+</section>
+<section class="mb-120 bg-sleek-bg py-16 px-6" id="projects">
+<div class="max-w-[1000px] mx-auto"> 
+<div class="mb-10 text-left">
+<span class="block text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-gray-500 mb-2">Featured</span>
+<h2 class="text-3xl font-sans font-bold text-white tracking-tight">## Projects</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<article class="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
+<div class="h-[200px] w-full relative overflow-hidden bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-pink-900/20">
+<img alt="NotesBuddy Dashboard" class="w-full h-full object-cover object-top opacity-90 transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4"/>
+<div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-[18px] font-bold text-white font-sans">NotesBuddy</h3>
+<div class="flex gap-3">
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-github-original text-[18px]"></i>
+</a>
+</div>
+</div>
+<p class="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">
+                            AI-powered note taking application that automatically categorizes your thoughts. Features real-time sync and markdown support for developer productivity.
+                        </p>
+<div class="mt-auto">
+<p class="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<i class="devicon-nextjs-original text-[20px] text-white" title="Next.js"></i>
+<i class="devicon-typescript-plain text-[20px] text-[#3178c6]" title="TypeScript"></i>
+<i class="devicon-tailwindcss-original text-[20px] text-[#38bdf8]" title="Tailwind"></i>
+<i class="devicon-prisma-original text-[20px] text-white" title="Prisma"></i>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-white/5">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+<span class="text-[12px] text-gray-400 font-sans">All Systems Operational</span>
+</div>
+<a class="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
+                                    View Details <span class="text-xs">→</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<article class="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
+<div class="h-[200px] w-full relative overflow-hidden bg-gradient-to-br from-pink-900/40 via-red-900/40 to-orange-900/20">
+<img alt="Appwrite MCP" class="w-full h-full object-cover object-top opacity-90 transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh60At3NHnzPmTlG7GlD-w7VEqZadH9A0y7x9pmdEfdcIpbm7UTQkK6izA7JhSQC0Aqy39ddkfsjHpH4UiO6fsH35eXZvIJ6pkHOLoPv2NhjdjnXkt11m5QU5sEqXcaVKbvaB5r1Y2BKDjfxYJYPegaxQGqEUkWzCQtzvKhgzxt8ueETDGFd6hfXMxiY7nOKRVL8n8xi1IvPqd_hE-MzwFLbPJz_nylLBSKpoH0acABy3-nVtIjurzsh-pZwya8FwzU44_TZSDr2M"/>
+<div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-[18px] font-bold text-white font-sans">Appwrite MCP Server</h3>
+<div class="flex gap-3">
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-github-original text-[18px]"></i>
+</a>
+</div>
+</div>
+<p class="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">
+                            A custom Model Context Protocol server implementation for Appwrite, enabling LLMs to directly interact with your Appwrite database and functions securely.
+                        </p>
+<div class="mt-auto">
+<p class="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<i class="devicon-nodejs-plain text-[20px] text-[#339933]" title="Node.js"></i>
+<i class="devicon-appwrite-plain text-[20px] text-[#f02e65]" title="Appwrite"></i>
+<i class="devicon-docker-plain text-[20px] text-[#2496ed]" title="Docker"></i>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-white/5">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+<span class="text-[12px] text-gray-400 font-sans">Operational</span>
+</div>
+<a class="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
+                                    View Details <span class="text-xs">→</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<article class="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
+<div class="h-[200px] w-full relative overflow-hidden bg-gradient-to-br from-cyan-900/40 via-blue-900/40 to-purple-900/20">
+<div class="absolute inset-0 flex items-center justify-center text-gray-700 font-sans text-xs uppercase tracking-widest z-10">Preview Unavailable</div>
+<img alt="Syncify App" class="w-full h-full object-cover object-top opacity-30 transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4"/>
+<div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-[18px] font-bold text-white font-sans">Syncify</h3>
+<div class="flex gap-3">
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-github-original text-[18px]"></i>
+</a>
+</div>
+</div>
+<p class="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">
+                            Real-time collaborative whiteboard for remote teams. Features infinite canvas, shape recognition, and live cursor tracking for up to 50 users.
+                        </p>
+<div class="mt-auto">
+<p class="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<i class="devicon-react-original text-[20px] text-[#61dafb]" title="React"></i>
+<i class="devicon-socketio-original text-[20px] text-white" title="Socket.io"></i>
+<i class="devicon-redux-original text-[20px] text-[#764abc]" title="Redux"></i>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-white/5">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+<span class="text-[12px] text-gray-400 font-sans">Operational</span>
+</div>
+<a class="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
+                                    View Details <span class="text-xs">→</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<article class="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
+<div class="h-[200px] w-full relative overflow-hidden bg-gradient-to-br from-amber-900/40 via-orange-900/40 to-yellow-900/20">
+<img alt="Pasandida Aurat" class="w-full h-full object-cover object-top opacity-90 transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"/>
+<div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-[18px] font-bold text-white font-sans">Pasandida Aurat</h3>
+<div class="flex gap-3">
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#">
+<i class="devicon-github-original text-[18px]"></i>
+</a>
+</div>
+</div>
+<p class="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">
+                            A cultural storytelling platform dedicated to South Asian narratives. Focused on immersive reading experiences with subtle parallax effects.
+                        </p>
+<div class="mt-auto">
+<p class="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<i class="devicon-vuejs-plain text-[20px] text-[#4fc08d]" title="Vue.js"></i>
+<i class="devicon-nuxtjs-plain text-[20px] text-white" title="Nuxt"></i>
+<i class="devicon-sass-original text-[20px] text-[#cc6699]" title="Sass"></i>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-white/5">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-pulse absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-50"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+</span>
+<span class="text-[12px] text-gray-400 font-sans">Building</span>
+</div>
+<a class="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
+                                    View Details <span class="text-xs">→</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-10 text-right">
+<a class="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white transition-colors group" href="#">
+                    Show all projects <span class="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>
+</div>
+</section>
+<section class="max-w-[760px] mx-auto px-6 mb-120" id="work">
+<div class="flex items-center gap-4 mb-16">
+<h3 class="font-pixel text-sm text-primary tracking-widest uppercase whitespace-nowrap">
+                // EXPERIENCE_LOG
+            </h3>
+<div class="h-px bg-gray-800 w-full"></div>
+</div>
+<div class="space-y-6">
+<div class="w-full bg-[#111111] border border-gray-800 p-8 flex flex-col md:flex-row gap-8 items-start hover:border-gray-600 transition-colors">
+<div class="flex-shrink-0">
+<div class="w-10 h-10 bg-[#1a1a2e] border border-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">terminal</span>
+</div>
+</div>
+<div class="flex-grow w-full">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+<div>
+<h4 class="text-xl font-bold text-white font-sans">Senior Frontend Engineer</h4>
+<p class="text-gray-400 text-sm mt-1">TechCorp Solutions</p>
+</div>
+<span class="font-code text-primary text-lg mt-2 md:mt-0">2021 - PRESENT</span>
+</div>
+<ul class="space-y-2 mb-6">
+<li class="text-gray-400 text-sm pl-4 relative before:content-['&gt;'] before:absolute before:left-0 before:text-primary before:font-pixel before:text-[10px] before:top-1">
+                            Spearheaded migration of legacy jQuery app to React, improving load times by 40%.
+                        </li>
+<li class="text-gray-400 text-sm pl-4 relative before:content-['&gt;'] before:absolute before:left-0 before:text-primary before:font-pixel before:text-[10px] before:top-1">
+                             Developed a shared component library used across 5 distinct products.
+                        </li>
+<li class="text-gray-400 text-sm pl-4 relative before:content-['&gt;'] before:absolute before:left-0 before:text-primary before:font-pixel before:text-[10px] before:top-1">
+                            Mentored 3 junior developers through code reviews and pair programming.
+                        </li>
+</ul>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 text-[11px] font-sans border border-gray-800 text-gray-500 rounded-sm">React</span>
+<span class="px-2 py-1 text-[11px] font-sans border border-gray-800 text-gray-500 rounded-sm">Redux</span>
+<span class="px-2 py-1 text-[11px] font-sans border border-gray-800 text-gray-500 rounded-sm">TypeScript</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-[#111111] border border-gray-800 p-8 flex flex-col md:flex-row gap-8 items-start hover:border-gray-600 transition-colors">
+<div class="flex-shrink-0">
+<div class="w-10 h-10 bg-[#1a1a2e] border border-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">code</span>
+</div>
+</div>
+<div class="flex-grow w-full">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+<div>
+<h4 class="text-xl font-bold text-white font-sans">Web Developer</h4>
+<p class="text-gray-400 text-sm mt-1">Creative Agency Inc.</p>
+</div>
+<span class="font-code text-primary text-lg mt-2 md:mt-0">2019 - 2021</span>
+</div>
+<ul class="space-y-2 mb-6">
+<li class="text-gray-400 text-sm pl-4 relative before:content-['&gt;'] before:absolute before:left-0 before:text-primary before:font-pixel before:text-[10px] before:top-1">
+                            Built responsive landing pages for over 15 clients with pixel-perfect precision.
+                        </li>
+<li class="text-gray-400 text-sm pl-4 relative before:content-['&gt;'] before:absolute before:left-0 before:text-primary before:font-pixel before:text-[10px] before:top-1">
+                            Collaborated with designers to implement complex animations using GSAP.
+                        </li>
+<li class="text-gray-400 text-sm pl-4 relative before:content-['&gt;'] before:absolute before:left-0 before:text-primary before:font-pixel before:text-[10px] before:top-1">
+                            Optimized assets achieving 95+ lighthouse scores on performance.
+                        </li>
+</ul>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 text-[11px] font-sans border border-gray-800 text-gray-500 rounded-sm">HTML/SCSS</span>
+<span class="px-2 py-1 text-[11px] font-sans border border-gray-800 text-gray-500 rounded-sm">JavaScript</span>
+<span class="px-2 py-1 text-[11px] font-sans border border-gray-800 text-gray-500 rounded-sm">WordPress</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[760px] mx-auto px-6 mb-120" id="about">
+<div class="flex items-center gap-4 mb-16">
+<h3 class="font-pixel text-sm text-primary tracking-widest uppercase">
+                // ME
+            </h3>
+<div class="h-px bg-gray-800 flex-grow"></div>
+</div>
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-shrink-0">
+<div class="w-[200px] h-[200px] rounded-full bg-gray-900 border-4 border-white/10 shadow-glow-yellow overflow-hidden relative">
+<img alt="Alex Large Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"/>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-3xl font-bold text-white mb-6 font-sans">Alex Dev.</h3>
+<div class="text-gray-400 text-lg leading-relaxed space-y-4 mb-8">
+<p>I am a digital craftsman focused on the intersection of design and engineering. With a background in traditional art, I approach every line of code as a brushstroke on a digital canvas.</p>
+<p>When I'm not coding, you can find me exploring retro game mechanics, brewing specialty coffee, or contributing to open source projects.</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="border border-gray-700 bg-[#111111] px-4 py-2 flex items-center gap-2">
+<i class="devicon-react-original text-xl text-[#61dafb]"></i>
+<span class="font-sans font-medium text-sm text-white">React</span>
+</div>
+<div class="border border-gray-700 bg-[#111111] px-4 py-2 flex items-center gap-2">
+<i class="devicon-spring-plain text-xl text-green-500"></i>
+<span class="font-sans font-medium text-sm text-white">Spring Boot</span>
+</div>
+<div class="border border-gray-700 bg-[#111111] px-4 py-2 flex items-center gap-2">
+<i class="devicon-javascript-plain text-xl text-yellow-400"></i>
+<span class="font-sans font-medium text-sm text-white">JavaScript</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[760px] mx-auto px-6 mb-120">
+<div class="flex items-center gap-4 mb-8">
+<h3 class="font-pixel text-sm text-primary tracking-widest uppercase">
+                // GITHUB_ACTIVITY
+            </h3>
+<div class="h-px bg-gray-800 flex-grow"></div>
+</div>
+<div class="w-full bg-[#0a0a12] border border-gray-800 p-6 md:p-8">
+<div class="heatmap-grid mb-8 w-full overflow-hidden">
+<script>
+                    for(let i=0; i<364; i++) {
+                        let opacity = Math.random();
+                        let colorClass = 'bg-gray-800'; // Default empty
+                        if(opacity > 0.9) colorClass = 'bg-green-500'; // High activity
+                        else if(opacity > 0.7) colorClass = 'bg-green-700';
+                        else if(opacity > 0.5) colorClass = 'bg-green-900';
+                        document.write(`<div class="heatmap-cell ${colorClass}"></div>`);
+                    }
+                </script>
+</div>
+<div class="flex flex-col md:flex-row gap-6 md:gap-12 pt-4 border-t border-gray-800">
+<div class="flex items-center gap-3">
+<span class="text-gray-500 uppercase text-xs font-pixel tracking-wider">Total Commits</span>
+<span class="text-white font-code text-xl bg-gray-900 px-3 py-1 border border-gray-700 rounded-sm">1,248</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-gray-500 uppercase text-xs font-pixel tracking-wider">Stars Earned</span>
+<span class="text-white font-code text-xl bg-gray-900 px-3 py-1 border border-gray-700 rounded-sm">342</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-gray-500 uppercase text-xs font-pixel tracking-wider">Repositories</span>
+<span class="text-white font-code text-xl bg-gray-900 px-3 py-1 border border-gray-700 rounded-sm">45</span>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[760px] mx-auto px-6 mb-24 relative" id="contact">
+<div class="max-w-4xl mx-auto px-4 text-center">
+<div class="mb-12">
+<p class="font-pixel text-gray-500 mb-6 tracking-widest text-xs uppercase">Save_Point</p>
+<h3 class="font-sans font-bold text-4xl md:text-5xl text-white">Let's Talk.</h3>
+</div>
+<form class="max-w-[560px] mx-auto space-y-4 text-left">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="sr-only" for="name">Name</label>
+<input class="w-full bg-[#1a1a2e] border border-gray-700 text-gray-300 placeholder-gray-500 p-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors font-sans" id="name" name="name" placeholder="Name" type="text"/>
+</div>
+<div>
+<label class="sr-only" for="email">Email</label>
+<input class="w-full bg-[#1a1a2e] border border-gray-700 text-gray-300 placeholder-gray-500 p-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors font-sans" id="email" name="email" placeholder="Email" type="email"/>
+</div>
+</div>
+<div>
+<label class="sr-only" for="message">Message</label>
+<textarea class="w-full bg-[#1a1a2e] border border-gray-700 text-gray-300 placeholder-gray-500 p-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors resize-none font-sans" id="message" name="message" placeholder="Your message..." rows="6"></textarea>
+</div>
+<div class="text-center pt-6">
+<button class="inline-block px-10 py-4 bg-gameboy-blue text-white font-pixel text-xs tracking-wider uppercase hover:brightness-110 transition-all shadow-pixel-hard hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]" type="submit">
+                        Send_Message
+                    </button>
+</div>
+</form>
+<div class="mt-16 flex justify-center gap-6">
+<a class="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors" href="#">
+<i class="devicon-twitter-original text-gray-500 group-hover:text-primary transition-colors"></i>
+</a>
+<a class="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors" href="#">
+<i class="devicon-linkedin-plain text-gray-500 group-hover:text-primary transition-colors"></i>
+</a>
+<a class="group w-10 h-10 border border-gray-700 flex items-center justify-center bg-[#1a1a2e] hover:border-primary transition-colors" href="#">
+<i class="devicon-github-original text-gray-500 group-hover:text-primary transition-colors"></i>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="py-12 border-t border-white/5 bg-background text-center relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4">
+<p class="font-pixel text-[10px] text-gray-600 uppercase tracking-widest animate-pulse">
+            Press Start to Continue...
+        </p>
+<div class="flex items-center gap-6 text-gray-500">
+<span class="text-xs font-sans">© 2023 Alex Portfolio</span>
+<div class="flex space-x-4">
+<a class="hover:text-primary transition-colors text-lg" href="#"><i class="devicon-twitter-original"></i></a>
+<a class="hover:text-primary transition-colors text-lg" href="#"><i class="devicon-github-original"></i></a>
+<a class="hover:text-primary transition-colors text-lg" href="#"><i class="devicon-linkedin-plain"></i></a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
