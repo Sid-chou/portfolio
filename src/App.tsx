@@ -1,21 +1,36 @@
 import { useState, useEffect } from 'react';
 import { fetchGitHubStats } from './utils/github';
+import { getRecentlyPlayed } from './utils/spotify';
 import { config } from './config';
 import { GitHubCalendar } from 'react-github-calendar';
+import { FaXTwitter, FaLinkedinIn, FaGithub, FaYoutube, FaInstagram, FaPinterestP } from "react-icons/fa6";
+import { Play, Pause } from "lucide-react";
+import { FaSpotify } from "react-icons/fa";
+import { section } from 'motion/react-client';
 
+const socialLinks = [
+  { label: "Twitter / X", href: "https://x.com/louis3995984693", icon: <FaXTwitter size={18} /> },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/sidhant-choudhury-169b442b1/", icon: <FaLinkedinIn size={18} /> },
+  { label: "GitHub", href: "https://github.com/Sid-chou", icon: <FaGithub size={18} /> },
+  { label: "YouTube", href: "https://youtube.com/@yourchannel", icon: <FaYoutube size={18} /> },
+  { label: "Instagram", href: "https://www.instagram.com/mainly.sid/", icon: <FaInstagram size={18} /> },
+  { label: "Pinterest", href: "https://in.pinterest.com/sidchoudhury16/", icon: <FaPinterestP size={18} /> },
+];
 export default function App() {
   return (
     <>
       <Navbar />
       <main className="pt-32 pb-24">
-        <Hero />
-        <Projects />
-        <Experience />
-        <About />
-        <GithubActivity />
-        <Contact />
+        <div className="w-full max-w-[760px] mx-auto px-6">
+          <Hero />
+          <Projects />
+          <Experience />
+          <About />
+          <GithubActivity />
+          <Contact />
+          <Footer />
+        </div>
       </main>
-      <Footer />
     </>
   );
 }
@@ -24,7 +39,7 @@ export default function App() {
 function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-transparent h-20 flex items-center">
-      <div className="w-full px-6 flex items-center justify-between">
+      <div className="w-full max-w-[760px] mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="relative w-8 h-8 rounded-full bg-[#ffd700] overflow-hidden flex items-center justify-center border border-[#ffd700]/20">
             <img
@@ -58,13 +73,20 @@ function Navbar() {
 
 /* ─── Hero ─── */
 function Hero() {
+  const [track, setTrack] = useState<{ name: string; artist: string; albumArt: string; trackUrl: string; trackId: string } | null>(null);
+  const [showEmbed, setShowEmbed] = useState(false);
+
+  useEffect(() => {
+    getRecentlyPlayed().then(setTrack);
+  }, []);
+
   return (
-    <section className="max-w-[760px] mx-auto px-6 mb-24 flex flex-col items-start text-left">
+    <section className="w-full mb-24 flex flex-col items-start text-left">
       {/* Avatar with green "online" dot */}
-      <div className="mb-8 relative group">
+      <div className="mb-3 relative group">
         <div className="w-20 h-20 rounded-full bg-[#ffd700] overflow-hidden relative shadow-lg shadow-[#ffd700]/10 ring-4 ring-black">
           <img
-            alt="Alex Avatar"
+            alt="Avatar"
             className="w-full h-full object-cover mix-blend-multiply"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
             referrerPolicy="no-referrer"
@@ -74,9 +96,9 @@ function Hero() {
       </div>
 
       {/* Headings */}
-      <div className="mb-6">
+      <div className="mb-2">
         <h1 className="font-sans font-bold text-white text-[44px] leading-tight tracking-tight">
-          Hi, I'm Alex —
+          Hi, I'm Sidhant —
         </h1>
         <h2 className="font-sans font-medium text-muted text-[44px] leading-tight tracking-tight">
           A Frontend Developer.
@@ -84,18 +106,21 @@ function Hero() {
       </div>
 
       {/* Description with inline tech badges */}
-      <div className="max-w-xl mb-10">
+      <div className="max-w-xl mb-4">
         <p className="text-muted text-[16px] leading-relaxed font-sans">
-          I'm a software engineer specialized in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at{' '}
+          I build interactive web apps using{' '}
           <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
             <i className="devicon-react-original text-[#61dafb] text-[14px]"></i> React
           </span>,{' '}
           <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
-            <i className="devicon-nextjs-original text-white text-[14px]"></i> Next.js
+            <i className="devicon-spring-plain text-[#6db33f] text-[14px]"></i> Spring
           </span> and{' '}
           <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
-            <i className="devicon-tailwindcss-original text-[#38bdf8] text-[14px]"></i> Tailwind
-          </span>.
+            <i className="devicon-mongodb-plain text-[#47a248] text-[14px]"></i> MongoDB
+          </span>. With a focus in UI design. Enthusiastic in{' '}
+          <span className="inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 bg-[#1a1a1a] border border-white/10 text-xs text-gray-300 font-medium rounded hover:border-white/30 transition-colors cursor-default select-none -translate-y-[1px]">
+            <i className="devicon-java-plain text-[#f89820] text-[14px]"></i> Java
+          </span> development.
         </p>
       </div>
 
@@ -112,42 +137,89 @@ function Hero() {
       </div>
 
       {/* Social Links */}
-      <div className="flex items-center gap-6 mb-16">
-        <a className="text-gray-500 hover:text-white transition-colors" href="#">
-          <i className="devicon-twitter-original text-[18px]"></i>
-        </a>
-        <a className="text-gray-500 hover:text-white transition-colors" href="#">
-          <i className="devicon-linkedin-plain text-[18px]"></i>
-        </a>
-        <a className="text-gray-500 hover:text-white transition-colors" href="#">
-          <i className="devicon-github-original text-[18px]"></i>
-        </a>
-        <a className="text-gray-500 hover:text-white transition-colors" href="#">
-          <i className="devicon-youtube-plain text-[18px]"></i>
-        </a>
+      <div className="flex items-center gap-5 mb-8">
+        {socialLinks.map((social) => (
+          <a
+            key={social.label}
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            className="text-gray-500 hover:text-white transition-colors duration-150"
+          >
+            {social.icon}
+          </a>
+        ))}
       </div>
 
-      {/* Spotify "Last Played" widget */}
-      <div className="w-full max-w-[700px] bg-[#111111] border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:border-white/20 transition-colors">
-        <div className="w-12 h-12 flex-shrink-0 bg-[#1ed760]/10 rounded-md flex items-center justify-center">
-          <i className="devicon-spotify-plain text-[#1ed760] text-2xl"></i>
-        </div>
-        <div className="flex-grow min-w-0">
-          <p className="text-[11px] uppercase tracking-wider text-gray-500 mb-0.5 font-medium">Last Played</p>
-          <div className="flex items-center gap-2 overflow-hidden">
-            <span className="text-sm font-medium text-gray-200 truncate">Midnight City</span>
-            <span className="text-sm text-gray-500">•</span>
-            <span className="text-sm text-gray-500 truncate">M83</span>
+      {/* Spotify widget */}
+      <div className="w-full mt-4 bg-[#111111] border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-colors">
+        {/* Top card row */}
+        <div className="p-4 flex items-center gap-4">
+          {/* Album Art */}
+          <div className="w-12 h-12 flex-shrink-0 rounded-md overflow-hidden bg-[#1ed760]/10 flex items-center justify-center">
+            {track?.albumArt
+              ? <img src={track.albumArt} alt="Album art" className="w-full h-full object-cover" />
+              : <span className="text-[#1ed760] inline-flex"><FaSpotify size={24} /></span>
+            }
           </div>
+
+          {/* Track Info */}
+          <div className="flex-grow min-w-0">
+            <p className="text-[11px] uppercase tracking-wider text-gray-500 mb-0.5 font-medium">
+              {showEmbed ? "Now Playing" : "Last Played on Spotify"}
+            </p>
+            <div className="flex items-center gap-2 overflow-hidden">
+              <span className="text-sm font-medium text-gray-200 truncate">
+                {track?.name || "Loading..."}
+              </span>
+              <span className="text-sm text-gray-500">•</span>
+              <span className="text-sm text-gray-500 truncate">
+                {track?.artist || ""}
+              </span>
+            </div>
+          </div>
+
+          {/* Play/Pause toggle */}
+          <button
+            onClick={() => setShowEmbed(prev => !prev)}
+            aria-label={showEmbed ? "Hide player" : "Play"}
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0"
+          >
+            {showEmbed ? <Pause size={14} /> : <Play size={14} />}
+          </button>
+
+          {/* Spotify external link */}
+          <a
+            href={track?.trackUrl || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Open in Spotify"
+            className="flex-shrink-0"
+          >
+            <span className="text-[#1ed760] hover:scale-110 transition-transform inline-flex">
+              <FaSpotify size={18} />
+            </span>
+          </a>
         </div>
-        <div className="hidden sm:block">
-          <span className="material-symbols-outlined text-gray-500">graphic_eq</span>
-        </div>
+
+        {/* Embed — shows when play is clicked */}
+        {showEmbed && track?.trackId && (
+          <iframe
+            src={`https://open.spotify.com/embed/track/${track.trackId}?utm_source=generator&theme=0`}
+            width="100%"
+            height="80"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            className="border-t border-white/10"
+          />
+        )}
       </div>
     </section>
   );
 }
-
 /* ─── Projects ─── */
 function Projects() {
   const projects = [
@@ -204,73 +276,71 @@ function Projects() {
   ];
 
   return (
-    <section className="mb-120 bg-sleek-bg py-16 px-6" id="projects">
-      <div className="max-w-[1000px] mx-auto">
-        <div className="mb-10 text-left">
-          <span className="block text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-gray-500 mb-2">Featured</span>
-          <h2 className="text-3xl font-sans font-bold text-white tracking-tight">## Projects</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {projects.map((project, index) => (
-            <article key={index} className="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
-              {/* Image */}
-              <div className={`h-[200px] w-full relative overflow-hidden bg-gradient-to-br ${project.gradient}`}>
-                {project.previewUnavailable && (
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-sans text-xs uppercase tracking-widest z-10">Preview Unavailable</div>
-                )}
-                <img
-                  alt={project.title}
-                  className={`w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 ${project.previewUnavailable ? 'opacity-30' : 'opacity-90'}`}
-                  src={project.img}
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
-              </div>
-              {/* Content */}
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-[18px] font-bold text-white font-sans">{project.title}</h3>
-                  <div className="flex gap-3">
-                    <a className="text-gray-500 hover:text-white transition-colors" href="#">
-                      <span className="material-symbols-outlined text-[20px]">language</span>
-                    </a>
-                    <a className="text-gray-500 hover:text-white transition-colors" href="#">
-                      <i className="devicon-github-original text-[18px]"></i>
-                    </a>
-                  </div>
-                </div>
-                <p className="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">{project.desc}</p>
-                <div className="mt-auto">
-                  <p className="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((t, i) => (
-                      <i key={i} className={`${t.icon} text-[20px] ${t.color}`} title={t.name}></i>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <div className="flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${project.status === 'building' ? 'animate-pulse bg-red-500' : 'animate-ping bg-green-400'}`}></span>
-                        <span className={`relative inline-flex rounded-full h-2 w-2 ${project.status === 'building' ? 'bg-red-600' : 'bg-green-500'}`}></span>
-                      </span>
-                      <span className="text-[12px] text-gray-400 font-sans">
-                        {project.status === 'building' ? 'Building' : 'All Systems Operational'}
-                      </span>
-                    </div>
-                    <a className="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
-                      View Details <span className="text-xs">→</span>
-                    </a>
-                  </div>
+    <section className="w-full mb-120 py-16" id="projects">
+      <div className="mb-10 text-left">
+        <span className="block text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-gray-500 mb-2">Featured</span>
+        <h2 className="text-3xl font-sans font-bold text-white tracking-tight">## Projects</h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {projects.map((project, index) => (
+          <article key={index} className="bg-sleek-card rounded-xl border border-white/10 overflow-hidden flex flex-col group h-full hover:border-white/20 transition-colors duration-300">
+            {/* Image */}
+            <div className={`h-[200px] w-full relative overflow-hidden bg-gradient-to-br ${project.gradient}`}>
+              {project.previewUnavailable && (
+                <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-sans text-xs uppercase tracking-widest z-10">Preview Unavailable</div>
+              )}
+              <img
+                alt={project.title}
+                className={`w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 ${project.previewUnavailable ? 'opacity-30' : 'opacity-90'}`}
+                src={project.img}
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#111118] to-transparent"></div>
+            </div>
+            {/* Content */}
+            <div className="p-5 flex flex-col flex-grow">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-[18px] font-bold text-white font-sans">{project.title}</h3>
+                <div className="flex gap-3">
+                  <a className="text-gray-500 hover:text-white transition-colors" href="#">
+                    <span className="material-symbols-outlined text-[20px]">language</span>
+                  </a>
+                  <a className="text-gray-500 hover:text-white transition-colors" href="#">
+                    <i className="devicon-github-original text-[18px]"></i>
+                  </a>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
-        <div className="mt-10 text-right">
-          <a className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white transition-colors group" href="#">
-            Show all projects <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
-          </a>
-        </div>
+              <p className="text-[13px] text-gray-400 font-sans leading-relaxed mb-6 line-clamp-2">{project.desc}</p>
+              <div className="mt-auto">
+                <p className="text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Technologies</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((t, i) => (
+                    <i key={i} className={`${t.icon} text-[20px] ${t.color}`} title={t.name}></i>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${project.status === 'building' ? 'animate-pulse bg-red-500' : 'animate-ping bg-green-400'}`}></span>
+                      <span className={`relative inline-flex rounded-full h-2 w-2 ${project.status === 'building' ? 'bg-red-600' : 'bg-green-500'}`}></span>
+                    </span>
+                    <span className="text-[12px] text-gray-400 font-sans">
+                      {project.status === 'building' ? 'Building' : 'All Systems Operational'}
+                    </span>
+                  </div>
+                  <a className="text-[12px] text-gray-500 hover:text-white transition-colors font-sans flex items-center gap-1 group-hover:translate-x-1 duration-200" href="#">
+                    View Details <span className="text-xs">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="mt-10 text-right">
+        <a className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white transition-colors group" href="#">
+          Show all projects <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+        </a>
       </div>
     </section>
   );
@@ -279,7 +349,7 @@ function Projects() {
 /* ─── Experience ─── */
 function Experience() {
   return (
-    <section className="max-w-[760px] mx-auto px-6 mb-120" id="work">
+    <section className="w-full mb-120" id="work">
       <div className="flex items-center gap-4 mb-16">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase whitespace-nowrap">
           // EXPERIENCE_LOG
@@ -362,7 +432,7 @@ function Experience() {
 /* ─── About ─── */
 function About() {
   return (
-    <section className="max-w-[760px] mx-auto px-6 mb-120" id="about">
+    <section className="w-full mb-120" id="about">
       <div className="flex items-center gap-4 mb-16">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase">
           // ME
@@ -436,7 +506,7 @@ function GithubActivity() {
   };
 
   return (
-    <section className="max-w-[760px] mx-auto px-6 mb-120">
+    <section className="w-full mb-120">
       <div className="flex items-center gap-4 mb-8">
         <h3 className="font-pixel text-sm text-primary tracking-widest uppercase">
           // GITHUB_ACTIVITY
@@ -498,13 +568,13 @@ function GithubActivity() {
 /* ─── Contact ─── */
 function Contact() {
   return (
-    <section className="max-w-[760px] mx-auto px-6 mb-24 relative" id="contact">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+    <section className="w-full mb-24 relative" id="contact">
+      <div className="w-full text-center">
         <div className="mb-12">
           <p className="font-pixel text-gray-500 mb-6 tracking-widest text-xs uppercase">Save_Point</p>
           <h3 className="font-sans font-bold text-4xl md:text-5xl text-white">Let's Talk.</h3>
         </div>
-        <form className="max-w-[560px] mx-auto space-y-4 text-left" onSubmit={(e) => e.preventDefault()}>
+        <form className="w-full space-y-4 text-left" onSubmit={(e) => e.preventDefault()}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="sr-only" htmlFor="name">Name</label>
@@ -544,8 +614,8 @@ function Contact() {
 /* ─── Footer ─── */
 function Footer() {
   return (
-    <footer className="py-12 border-t border-white/5 bg-background text-center relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4">
+    <footer className="w-full py-12 border-t border-white/5 bg-background text-center relative overflow-hidden">
+      <div className="w-full flex flex-col items-center gap-4">
         <p className="font-pixel text-[10px] text-gray-600 uppercase tracking-widest animate-pulse">
           Press Start to Continue...
         </p>
