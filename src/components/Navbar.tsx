@@ -147,7 +147,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                                             e.currentTarget.style.color = isDark ? "#ffffff" : "#1a1a1a";
                                         }
                                         e.currentTarget.style.textDecoration = "underline";
-                                        e.currentTarget.style.textUnderlineOffset = "4px";
+                                        e.currentTarget.style.textUnderlineOffset = "4px"; //this increae the dist betw text and underline 
                                     }}
                                     onMouseLeave={(e) => {
                                         if (activeSection !== link.id) {

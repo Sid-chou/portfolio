@@ -46,6 +46,22 @@ export default function App() {
       {/* Navbar — full width, outside main container */}
       <Navbar isDark={isDark} toggleTheme={toggleTheme} />
 
+      {/* adding the blur effect */}
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none"
+        style={{
+          height: "40px",
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+          // Gradient fade — transparent at top, solid at bottom
+          maskImage: "linear-gradient(to bottom, transparent, black)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent, black)",
+          background: isDark
+            ? "rgba(10, 10, 10, 0.4)"
+            : "rgba(255, 255, 242, 0.4)",
+        }}
+      />
+
       {/* All sections — 760px centered container */}
       <main className="pt-[68px] pb-24">
         <div className="w-full max-w-[760px] mx-auto px-6">
