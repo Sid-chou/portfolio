@@ -28,7 +28,7 @@ export default function Hero({ isDark }: HeroProps) {
     }, []);
 
     return (
-        <section className="w-full min-h-screen mb-20 pt-24 flex flex-col items-start text-left justify-start" id="hero">
+        <section className="w-full mb-20 pt-24 flex flex-col items-start text-left justify-start" id="hero">
             {/* Avatar with green "online" dot */}
             <div className="mb-6 relative group">
                 <div className="w-20 h-20 rounded-full bg-[#ffd700] overflow-hidden relative shadow-lg shadow-[#ffd700]/10">
@@ -57,13 +57,13 @@ export default function Hero({ isDark }: HeroProps) {
                         cursorCharacter="_"
                         as="span"
                     />{" "}
-                    <span className="font-bold text-muted">A Full Stack Developer.</span>
+                    <span className={`font-bold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>A Full Stack Developer.</span>
                 </h1>
             </div>
 
             {/* Description with inline tech badges */}
             <div className="max-w-xl mb-8 text-justify">
-                <p className="text-muted text-[17px] leading-loose font-sans">
+                <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} text-[17px] leading-loose font-sans`}>
                     I build interactive web apps using{' '}
                     <span className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-react-original text-[#61dafb] text-[14px]"></i> React

@@ -29,6 +29,7 @@
     "react-github-calendar": "^5.0.5",
     "react-icons": "^5.5.0",
     "tailwind-merge": "^3.5.0",
+    "tech-stack-icons": "^3.5.8",
     "vite": "^6.2.0"
   },
   "devDependencies": {

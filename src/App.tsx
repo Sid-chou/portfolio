@@ -67,7 +67,7 @@ export default function App() {
         <div className="w-full max-w-[760px] mx-auto px-6">
           <Hero isDark={isDark} />
           <Projects isDark={isDark} />
-          <Experience isDark={isDark} />
+          {/* <Experience isDark={isDark} /> */}
           <About isDark={isDark} />
           <GithubActivity isDark={isDark} />
           <Contact isDark={isDark} />
