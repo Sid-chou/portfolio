@@ -2,6 +2,7 @@
 
 @theme {
   --color-background: #0a0a0a;
+  --color-light-bg: #FFFFF2;
   --color-card-dark: #111111;
   --color-border-dark: #2a2a3e;
   --color-primary: #53c0f0;
@@ -23,13 +24,22 @@
   --spacing-120: 120px;
 }
 
-/* Custom Utilities */
-.glass-nav {
-  background-color: rgba(10, 10, 10, 0.6);
-  backdrop-filter: blur(12px);
+/* ── Dark mode (default) ── */
+html.dark,
+html.dark body {
+  background-color: #0a0a0a !important;
+  color: #f0f0f0;
 }
 
-/* Scrollbar */
+/* ── Light mode ── */
+html.light,
+html.light body,
+html:not(.dark) body {
+  background-color: #FFFFF2 !important;
+  color: #1a1a1a;
+}
+
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -44,4 +54,128 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* ───────────────────────────────────────────────
+   CMDK Command Palette — Custom Styles
+   ─────────────────────────────────────────────── */
+
+/* Overlay */
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+}
+
+/* Dialog container */
+[cmdk-root] {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 560px;
+  border-radius: 12px;
+  z-index: 101;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+html.dark [cmdk-root] {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+html.light [cmdk-root] {
+  background: #FFFFF2;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+/* Input */
+[cmdk-input] {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+html.dark [cmdk-input] {
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.dark [cmdk-input]::placeholder {
+  color: #6b7280;
+}
+
+html.light [cmdk-input] {
+  color: #1a1a1a;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html.light [cmdk-input]::placeholder {
+  color: #9ca3af;
+}
+
+/* List */
+[cmdk-list] {
+  padding: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* Group heading */
+[cmdk-group-heading] {
+  padding: 8px 8px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+/* Each item */
+[cmdk-item] {
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+html.dark [cmdk-item] {
+  color: #9ca3af;
+}
+
+html.dark [cmdk-item][data-selected="true"],
+html.dark [cmdk-item]:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+html.light [cmdk-item] {
+  color: #6b7280;
+}
+
+html.light [cmdk-item][data-selected="true"],
+html.light [cmdk-item]:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
+}
+
+/* Empty state */
+[cmdk-empty] {
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
 }

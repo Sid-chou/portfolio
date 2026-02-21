@@ -6,7 +6,7 @@ import { GitHubCalendar } from 'react-github-calendar';
 import { FaXTwitter, FaLinkedinIn, FaGithub, FaYoutube, FaInstagram, FaPinterestP } from "react-icons/fa6";
 import { Play, Pause } from "lucide-react";
 import { FaSpotify } from "react-icons/fa";
-import { section } from 'motion/react-client';
+import Navbar from './components/Navbar';
 
 const socialLinks = [
   { label: "Twitter / X", href: "https://x.com/louis3995984693", icon: <FaXTwitter size={18} /> },
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24">
+      <main className="pt-[68px] pb-24">
         <div className="w-full max-w-[760px] mx-auto px-6">
           <Hero />
           <Projects />
@@ -35,41 +35,6 @@ export default function App() {
   );
 }
 
-/* ─── Navbar ─── */
-function Navbar() {
-  return (
-    <nav className="fixed top-0 w-full z-50 bg-transparent h-20 flex items-center">
-      <div className="w-full max-w-[760px] mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <div className="relative w-8 h-8 rounded-full bg-[#ffd700] overflow-hidden flex items-center justify-center border border-[#ffd700]/20">
-            <img
-              alt="Small Avatar"
-              className="w-full h-full object-cover opacity-90 mix-blend-multiply"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="flex items-center space-x-6">
-            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#work">Work</a>
-            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#projects">Projects</a>
-            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#about">About</a>
-            <a className="text-[14px] font-sans font-medium text-white hover:text-gray-300 transition-colors" href="#contact">Contact</a>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <button className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-[#1a1a1a] border border-[#333] rounded-md text-xs text-muted hover:border-gray-600 transition-colors">
-            <span className="material-symbols-outlined text-[16px]">search</span>
-            <span>Search</span>
-            <span className="bg-[#333] px-1.5 py-0.5 rounded text-[10px] text-gray-400">Ctrl K</span>
-          </button>
-          <button className="text-muted hover:text-white transition-colors">
-            <span className="material-symbols-outlined text-[20px]">dark_mode</span>
-          </button>
-        </div>
-      </div>
-    </nav>
-  );
-}
 
 /* ─── Hero ─── */
 function Hero() {
@@ -81,15 +46,14 @@ function Hero() {
   }, []);
 
   return (
-    <section className="w-full mb-24 flex flex-col items-start text-left">
+    <section className="w-full mb-24 pt-16 flex flex-col items-start text-left">
       {/* Avatar with green "online" dot */}
       <div className="mb-3 relative group">
         <div className="w-20 h-20 rounded-full bg-[#ffd700] overflow-hidden relative shadow-lg shadow-[#ffd700]/10 ring-4 ring-black">
           <img
-            alt="Avatar"
-            className="w-full h-full object-cover mix-blend-multiply"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
-            referrerPolicy="no-referrer"
+            alt="Sidhant"
+            className="w-full h-full object-cover"
+            src="/assets/louis_29.webp"
           />
         </div>
         <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background z-10"></div>
@@ -443,10 +407,9 @@ function About() {
         <div className="flex-shrink-0">
           <div className="w-[200px] h-[200px] rounded-full bg-gray-900 border-4 border-white/10 shadow-glow-yellow overflow-hidden relative">
             <img
-              alt="Alex Large Avatar"
+              alt="Sidhant"
               className="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc"
-              referrerPolicy="no-referrer"
+              src="/assets/louis_29.webp"
             />
           </div>
         </div>
@@ -614,7 +577,7 @@ function Contact() {
 /* ─── Footer ─── */
 function Footer() {
   return (
-    <footer className="w-full py-12 border-t border-white/5 bg-background text-center relative overflow-hidden">
+    <footer className="w-full py-12 border-t border-white/5 text-center relative overflow-hidden">
       <div className="w-full flex flex-col items-center gap-4">
         <p className="font-pixel text-[10px] text-gray-600 uppercase tracking-widest animate-pulse">
           Press Start to Continue...
