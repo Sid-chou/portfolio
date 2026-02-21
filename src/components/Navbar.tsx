@@ -11,48 +11,20 @@ import {
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 
-
 const NAV_LINKS = [
     { label: "Work", id: "work" },
     { label: "Projects", id: "projects" },
     { label: "About", id: "about" },
 ];
 
-export default function Navbar() {
-    const [isDark, setIsDark] = useState(true);
+type NavbarProps = {
+    isDark: boolean;
+    toggleTheme: () => void;
+};
+
+export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
     const [open, setOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
-
-    /* ── Theme: read from localStorage on mount ── */
-    useEffect(() => {
-        const saved = localStorage.getItem("theme");
-        if (saved === "light") {
-            setIsDark(false);
-            document.documentElement.classList.remove("dark");
-            document.documentElement.classList.add("light");
-        } else {
-            setIsDark(true);
-            document.documentElement.classList.add("dark");
-            document.documentElement.classList.remove("light");
-        }
-    }, []);
-
-    /* ── Toggle theme ── */
-    const toggleTheme = useCallback(() => {
-        setIsDark((prev) => {
-            const next = !prev;
-            if (next) {
-                document.documentElement.classList.add("dark");
-                document.documentElement.classList.remove("light");
-                localStorage.setItem("theme", "dark");
-            } else {
-                document.documentElement.classList.remove("dark");
-                document.documentElement.classList.add("light");
-                localStorage.setItem("theme", "light");
-            }
-            return next;
-        });
-    }, []);
 
     /* ── Ctrl+K / Cmd+K shortcut ── */
     useEffect(() => {
@@ -208,7 +180,7 @@ export default function Navbar() {
                                 border: isDark
                                     ? "1px solid rgba(255,255,255,0.10)"
                                     : "1px solid rgba(0,0,0,0.10)",
-                                color: isDark ? "#ffffffff" : "#1a1a1a",
+                                color: isDark ? "#ffffff" : "#1a1a1a",
                                 transition: "border-color 150ms ease",
                             }}
                         >
@@ -222,7 +194,7 @@ export default function Navbar() {
                                     padding: "1px 6px",
                                     fontSize: 11,
                                     marginLeft: 8,
-                                    color: isDark ? "#ffffffff" : "#1a1a1a",
+                                    color: isDark ? "#ffffff" : "#1a1a1a",
                                 }}
                             >
                                 Ctrl K
