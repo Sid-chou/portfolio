@@ -44,20 +44,34 @@ const CELL = 11, GAP = 2, STEP = CELL + GAP;
 // ─── SKELETON ─────────────────────────────────────────────────────────────
 function Skeleton({ dark }: { dark: boolean }) {
     const bg = dark ? "#21262d" : "#e4e9ef";
-    const shine = dark ? "#30363d" : "#f2f5f8";
+    const width = 47 * STEP;
+    const height = 7 * STEP + 20;
+
     return (
-        <div style={{ position: "relative", width: "100%", display: "flex", gap: "max(1px, 0.2vw)" }}>
-            <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}`}</style>
-            <div style={{ width: "3%", minWidth: "15px" }}></div>
-            {Array.from({ length: 53 }).map((_, wi) => (
-                <div key={wi} style={{ display: "flex", flexDirection: "column", gap: "max(1px, 0.2vw)", flex: 1 }}>
-                    {Array.from({ length: 7 }).map((_, di) => (
-                        <div key={di} style={{ width: "100%", aspectRatio: "1 / 1", borderRadius: "min(2px, 0.3vw)", background: bg, position: "relative", overflow: "hidden" }}>
-                            <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent, ${shine}, transparent)`, animation: `shimmer 1.5s infinite`, animationDelay: `${(wi * 7 + di) * 7}ms` }} />
-                        </div>
-                    ))}
-                </div>
-            ))}
+        <div className="w-full [&>svg]:w-full [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:overflow-visible">
+            <style>{`
+                @keyframes shimmer{
+                    0%, 100% { opacity: 0.5; }
+                    50% { opacity: 1; }
+                }
+            `}</style>
+            <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMinYMin meet">
+                {Array.from({ length: 47 }).map((_, wi) => (
+                    <g key={wi} transform={`translate(${wi * STEP}, 20)`}>
+                        {Array.from({ length: 7 }).map((_, di) => (
+                            <rect
+                                key={di}
+                                y={di * STEP}
+                                width={CELL}
+                                height={CELL}
+                                rx={2}
+                                fill={bg}
+                                style={{ animation: `shimmer 1.5s infinite`, animationDelay: `${(wi * 7 + di) * 5}ms` }}
+                            />
+                        ))}
+                    </g>
+                ))}
+            </svg>
         </div>
     );
 }
@@ -129,7 +143,14 @@ export default function GithubActivity({ isDark }: GithubActivityProps) {
     const muted = dark ? "#7d8590" : "#6b7280";
     const accent = dark ? "#39d353" : "#216e39";
 
-    const weeks = buildWeeks(days);
+    let weeks = buildWeeks(days);
+
+    // Replicate exactly the 47-column sliding window like the recent GitHub UI.
+    // Each day one block drops from the oldest month to add the newest day on the right.
+    if (weeks.length > 47) {
+        weeks = weeks.slice(-47);
+    }
+
     const monthLabels = getMonthLabels(weeks);
     const total = days.reduce((s, d) => s + (d?.count || 0), 0);
     const streak = (() => {
@@ -145,8 +166,8 @@ export default function GithubActivity({ isDark }: GithubActivityProps) {
         <section className="w-full mb-40 overflow-hidden" id="github">
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Syne:wght@700;800&display=swap');
-        .gh-cell{transition:transform .08s ease,filter .08s ease;}
-        .gh-cell:hover{transform:scale(1.45)!important;filter:brightness(1.3)!important;z-index:10;position:relative;}
+        .gh-cell{transition:filter .1s ease, stroke-width .1s ease;}
+        .gh-cell:hover{filter:brightness(1.5); stroke: #ffffff; stroke-width: 1.5px;}
         .stat-pill:hover{border-color:${accent}!important;}
       `}</style>
             <AnimatedContent
@@ -193,52 +214,61 @@ export default function GithubActivity({ isDark }: GithubActivityProps) {
                                     ⚠ {error}
                                 </div>
                             ) : (
-                                <div style={{ position: "relative", minWidth: "max-content" }}>
-
-                                    {/* Month labels */}
-                                    <div style={{ position: "relative", height: 18, marginLeft: 0 }}>
-                                        {monthLabels.map(({ wi, label }) => {
-                                            return (
-                                                <span key={label + wi} style={{ position: "absolute", left: wi * STEP, fontSize: 10, color: muted, letterSpacing: "0.05em" }}>{label}</span>
-                                            );
-                                        })}
-                                    </div>
-
-                                    {/* Grid */}
-                                    <div style={{ display: "flex", gap: GAP, width: "100%", overflow: "hidden" }}>
-                                        {weeks.map((week, wi) => {
-                                            return (
-                                                <div
-                                                    key={wi}
-                                                    style={{ display: "flex", flexDirection: "column", gap: GAP }}
+                                <div className="w-full [&>svg]:w-full [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:overflow-visible">
+                                    <svg viewBox={`0 0 ${47 * STEP} ${7 * STEP + 20}`} preserveAspectRatio="xMinYMin meet">
+                                        {/* Month labels */}
+                                        <g>
+                                            {monthLabels.map(({ wi, label }) => (
+                                                <text
+                                                    key={label + wi}
+                                                    x={wi * STEP}
+                                                    y={10}
+                                                    fontSize={10}
+                                                    fill={muted}
+                                                    fontFamily="'DM Mono', monospace"
+                                                    letterSpacing="0.05em"
                                                 >
+                                                    {label}
+                                                </text>
+                                            ))}
+                                        </g>
+
+                                        {/* Grid */}
+                                        <g transform="translate(0, 20)">
+                                            {weeks.map((week, wi) => (
+                                                <g key={wi} transform={`translate(${wi * STEP}, 0)`}>
                                                     {[0, 1, 2, 3, 4, 5, 6].map((dow) => {
                                                         const day = week[dow];
-                                                        if (!day) return <div key={dow} style={{ width: CELL, height: CELL }} />;
+                                                        if (!day) return <rect key={dow} y={dow * STEP} width={CELL} height={CELL} fill="transparent" />;
                                                         return (
-                                                            <div
+                                                            <rect
                                                                 key={dow}
+                                                                y={dow * STEP}
+                                                                width={CELL}
+                                                                height={CELL}
+                                                                rx={2}
+                                                                fill={levelColor(day.count, dark)}
+                                                                stroke={dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}
+                                                                strokeWidth={1}
                                                                 className="gh-cell"
-                                                                style={{
-                                                                    width: CELL, height: CELL, borderRadius: 3,
-                                                                    background: levelColor(day.count, dark),
-                                                                    cursor: "default",
-                                                                    border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}`,
-                                                                }}
-                                                            />
+                                                            >
+                                                                <title>{`${day.count} contributions on ${day.date}`}</title>
+                                                            </rect>
                                                         );
                                                     })}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
+                                                </g>
+                                            ))}
+                                        </g>
+                                    </svg>
 
                                     {/* Legend */}
-                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 5, marginTop: 10 }}>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, marginTop: 10 }}>
                                         <span style={{ fontSize: 10, color: muted }}>Less</span>
-                                        {[0, 1, 3, 6, 10, 15].map((v) => (
-                                            <div key={v} style={{ width: 13, height: 13, borderRadius: 3, background: levelColor(v, dark), border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}` }} />
-                                        ))}
+                                        <svg width={85} height={13} viewBox="0 0 85 13" style={{ overflow: "visible" }}>
+                                            {[0, 1, 3, 6, 10, 15].map((v, i) => (
+                                                <rect key={v} x={i * 15} width={13} height={13} rx={2} fill={levelColor(v, dark)} stroke={dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"} />
+                                            ))}
+                                        </svg>
                                         <span style={{ fontSize: 10, color: muted }}>More</span>
                                     </div>
                                 </div>
