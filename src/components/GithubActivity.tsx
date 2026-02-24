@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AnimatedContent from "../../components/AnimatedContent";
 
 type Day = { date: string, count: number, level: number };
 
@@ -148,88 +149,104 @@ export default function GithubActivity({ isDark }: GithubActivityProps) {
         .gh-cell:hover{transform:scale(1.45)!important;filter:brightness(1.3)!important;z-index:10;position:relative;}
         .stat-pill:hover{border-color:${accent}!important;}
       `}</style>
-            <div style={{ fontFamily: "'DM Mono', monospace", width: "100%", display: "flex", justifyContent: "flex-start", transition: "background .3s", background: cardBg, padding: "2rem", borderRadius: "14px" }}>
-                <div style={{ width: "100%", maxWidth: 900 }}>
+            <AnimatedContent
+                distance={60}
+                direction="vertical"
+                reverse={false}
+                duration={0.6}
+                ease="power3.out"
+                initialOpacity={0}
+                animateOpacity={true}
+                scale={1}
+                threshold={0.1}
+                delay={0}
+                container={null}
+                onComplete={undefined}
+                onDisappearanceComplete={undefined}
+            >
+                <div style={{ fontFamily: "'DM Mono', monospace", width: "100%", display: "flex", justifyContent: "flex-start", transition: "background .3s", background: cardBg, padding: "2rem", borderRadius: "14px" }}>
+                    <div style={{ width: "100%", maxWidth: 900 }}>
 
-                    {/* Header */}
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.8rem", paddingLeft: "10px" }}>
-                        <div>
-                            <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: muted, marginBottom: 10 }}>
-                                Featured
-                            </p>
-                            <h2 className="font-sans font-bold tracking-tight text-3xl" style={{ marginBottom: 8, lineHeight: 1.2 }}>
-                                Github Activity
-                            </h2>
-                            <p style={{ fontSize: 13, color: muted, marginTop: 4 }}>
-                                Total: <strong style={{ color: text }}>{total.toLocaleString()}</strong> contributions
-                            </p>
+                        {/* Header */}
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.8rem", paddingLeft: "10px" }}>
+                            <div>
+                                <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: muted, marginBottom: 10 }}>
+                                    Featured
+                                </p>
+                                <h2 className="font-sans font-bold tracking-tight text-3xl" style={{ marginBottom: 8, lineHeight: 1.2 }}>
+                                    Github Activity
+                                </h2>
+                                <p style={{ fontSize: 13, color: muted, marginTop: 4 }}>
+                                    Total: <strong style={{ color: text }}>{total.toLocaleString()}</strong> contributions
+                                </p>
 
+                            </div>
+                        </div>
+
+                        {/* Heatmap card */}
+                        <div style={{ background: cardBg, border: `1px solid ${border}`, borderRadius: 14, padding: "24px 28px 18px", position: "relative", width: "100%", overflow: "hidden" }}>
+
+                            {loading ? (
+                                <Skeleton dark={dark} />
+                            ) : error ? (
+                                <div style={{ height: 112, display: "flex", alignItems: "center", justifyContent: "center", color: "#f85149", fontSize: 13, gap: 6 }}>
+                                    ⚠ {error}
+                                </div>
+                            ) : (
+                                <div style={{ position: "relative", minWidth: "max-content" }}>
+
+                                    {/* Month labels */}
+                                    <div style={{ position: "relative", height: 18, marginLeft: 0 }}>
+                                        {monthLabels.map(({ wi, label }) => {
+                                            return (
+                                                <span key={label + wi} style={{ position: "absolute", left: wi * STEP, fontSize: 10, color: muted, letterSpacing: "0.05em" }}>{label}</span>
+                                            );
+                                        })}
+                                    </div>
+
+                                    {/* Grid */}
+                                    <div style={{ display: "flex", gap: GAP, width: "100%", overflow: "hidden" }}>
+                                        {weeks.map((week, wi) => {
+                                            return (
+                                                <div
+                                                    key={wi}
+                                                    style={{ display: "flex", flexDirection: "column", gap: GAP }}
+                                                >
+                                                    {[0, 1, 2, 3, 4, 5, 6].map((dow) => {
+                                                        const day = week[dow];
+                                                        if (!day) return <div key={dow} style={{ width: CELL, height: CELL }} />;
+                                                        return (
+                                                            <div
+                                                                key={dow}
+                                                                className="gh-cell"
+                                                                style={{
+                                                                    width: CELL, height: CELL, borderRadius: 3,
+                                                                    background: levelColor(day.count, dark),
+                                                                    cursor: "default",
+                                                                    border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}`,
+                                                                }}
+                                                            />
+                                                        );
+                                                    })}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+
+                                    {/* Legend */}
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 5, marginTop: 10 }}>
+                                        <span style={{ fontSize: 10, color: muted }}>Less</span>
+                                        {[0, 1, 3, 6, 10, 15].map((v) => (
+                                            <div key={v} style={{ width: 13, height: 13, borderRadius: 3, background: levelColor(v, dark), border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}` }} />
+                                        ))}
+                                        <span style={{ fontSize: 10, color: muted }}>More</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
-
-                    {/* Heatmap card */}
-                    <div style={{ background: cardBg, border: `1px solid ${border}`, borderRadius: 14, padding: "24px 28px 18px", position: "relative", width: "100%", overflow: "hidden" }}>
-
-                        {loading ? (
-                            <Skeleton dark={dark} />
-                        ) : error ? (
-                            <div style={{ height: 112, display: "flex", alignItems: "center", justifyContent: "center", color: "#f85149", fontSize: 13, gap: 6 }}>
-                                ⚠ {error}
-                            </div>
-                        ) : (
-                            <div style={{ position: "relative", minWidth: "max-content" }}>
-
-                                {/* Month labels */}
-                                <div style={{ position: "relative", height: 18, marginLeft: 0 }}>
-                                    {monthLabels.map(({ wi, label }) => {
-                                        return (
-                                            <span key={label + wi} style={{ position: "absolute", left: wi * STEP, fontSize: 10, color: muted, letterSpacing: "0.05em" }}>{label}</span>
-                                        );
-                                    })}
-                                </div>
-
-                                {/* Grid */}
-                                <div style={{ display: "flex", gap: GAP, width: "100%", overflow: "hidden" }}>
-                                    {weeks.map((week, wi) => {
-                                        return (
-                                            <div
-                                                key={wi}
-                                                style={{ display: "flex", flexDirection: "column", gap: GAP }}
-                                            >
-                                                {[0, 1, 2, 3, 4, 5, 6].map((dow) => {
-                                                    const day = week[dow];
-                                                    if (!day) return <div key={dow} style={{ width: CELL, height: CELL }} />;
-                                                    return (
-                                                        <div
-                                                            key={dow}
-                                                            className="gh-cell"
-                                                            style={{
-                                                                width: CELL, height: CELL, borderRadius: 3,
-                                                                background: levelColor(day.count, dark),
-                                                                cursor: "default",
-                                                                border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}`,
-                                                            }}
-                                                        />
-                                                    );
-                                                })}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-
-                                {/* Legend */}
-                                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 5, marginTop: 10 }}>
-                                    <span style={{ fontSize: 10, color: muted }}>Less</span>
-                                    {[0, 1, 3, 6, 10, 15].map((v) => (
-                                        <div key={v} style={{ width: 13, height: 13, borderRadius: 3, background: levelColor(v, dark), border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)"}` }} />
-                                    ))}
-                                    <span style={{ fontSize: 10, color: muted }}>More</span>
-                                </div>
-                            </div>
-                        )}
-                    </div>
                 </div>
-            </div>
+            </AnimatedContent>
         </section>
     );
 }
