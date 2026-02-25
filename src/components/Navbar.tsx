@@ -139,7 +139,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                                         textTransform: "none",
                                         letterSpacing: "0.04em",
                                         transition: "color 150ms ease",
-                                        fontWeight: activeSection === link.id ? 500 : 400,
+                                        fontWeight: 500,
                                         color: isDark ? "#ffffff" : "#1a1a1a",
                                     }}
                                     onMouseEnter={(e) => {
@@ -147,7 +147,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                                             e.currentTarget.style.color = isDark ? "#ffffff" : "#1a1a1a";
                                         }
                                         e.currentTarget.style.textDecoration = "underline";
-                                        e.currentTarget.style.textUnderlineOffset = "4px"; //this increae the dist betw text and underline 
+                                        e.currentTarget.style.textUnderlineOffset = "4px"; //this increae the dist betw text and underline f
                                     }}
                                     onMouseLeave={(e) => {
                                         if (activeSection !== link.id) {

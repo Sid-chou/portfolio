@@ -82,7 +82,12 @@ export default function Hero({ isDark }: HeroProps) {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-3 mb-6">
-                <a className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 border font-sans text-[12px] font-medium rounded-xl transition-all group ${isDark ? 'bg-[#111] border-white/20 text-white hover:bg-[#2a2a2a] hover:border-white/40' : 'bg-white border-black/15 text-[#1a1a1a] hover:bg-[#e8e8e8] hover:border-black/30'}`} href="#">
+                <a
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 border font-sans text-[12px] font-medium rounded-xl transition-all group ${isDark ? 'bg-[#111] border-white/20 text-white hover:bg-[#2a2a2a] hover:border-white/40' : 'bg-white border-black/15 text-[#1a1a1a] hover:bg-[#e8e8e8] hover:border-black/30'}`}
+                    href="https://drive.google.com/file/d/1Y9ihJNMLRaat2X5rpGugWz-KkslZtYvz/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <span className={`material-symbols-outlined text-[15px] ${isDark ? 'text-gray-400 group-hover:text-gray-200' : 'text-gray-500 group-hover:text-gray-700'}`}>description</span>
                     Resume / CV
                 </a>
