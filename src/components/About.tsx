@@ -22,7 +22,7 @@ export default function About({ isDark }: AboutProps) {
                     className="text-sm font-sans font-medium tracking-wide"
                     style={{ color: isDark ? "#a1a1aa" : "#71717a" }}
                 >
-                    About
+                    About   
                 </h2>
                 <h2
                     className="text-4xl font-sans font-bold tracking-tight"

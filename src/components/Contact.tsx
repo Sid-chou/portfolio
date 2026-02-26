@@ -6,17 +6,13 @@ type ContactProps = {
 };
 
 export default function Contact({ isDark }: ContactProps) {
-    const inputBg = isDark ? "bg-[#1a1a2e]" : "bg-white";
-    const inputBorder = isDark ? "border-gray-700" : "border-gray-300";
+    const inputBg = isDark ? "bg-black" : "bg-white";
+    const inputBorder = isDark ? "border-gray-800" : "border-gray-300";
     const inputText = isDark ? "text-gray-300" : "text-gray-900";
     const inputPlaceholder = isDark ? "placeholder-gray-500" : "placeholder-gray-400";
 
-    const inputClass = `w-full ${inputBg} border ${inputBorder} ${inputText} ${inputPlaceholder} p-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors font-sans`;
+    const inputClass = `w-full ${inputBg} border ${inputBorder} rounded-xl ${inputText} ${inputPlaceholder} p-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-none transition-colors font-sans`;
 
-    const socialBg = isDark ? "bg-[#1a1a2e]" : "bg-white";
-    const socialBorder = isDark ? "border-gray-700" : "border-gray-300";
-    const socialText = isDark ? "text-gray-500" : "text-gray-400";
-    const socialIconClass = `group w-10 h-10 border ${socialBorder} flex items-center justify-center ${socialBg} hover:border-primary transition-colors`;
 
     return (
         <section className="w-full mb-24 relative" id="contact">
@@ -34,13 +30,25 @@ export default function Contact({ isDark }: ContactProps) {
                 onComplete={undefined}
                 onDisappearanceComplete={undefined}
             >
-                <div className="w-full text-center">
-                    <div className="mb-12">
-                        <p className="font-pixel text-gray-500 mb-6 tracking-widest text-xs uppercase">Save_Point</p>
-                        <h3 className="font-sans font-bold text-4xl md:text-5xl transition-colors" style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}>Let's Talk.</h3>
+                <div className="mb-10 text-left flex flex-col items-start gap-2">
+                    <div className="mb-6">
+                        <h2
+                            className="text-sm font-sans font-medium tracking-wide"
+                            style={{ color: isDark ? "#a1a1aa" : "#71717a" }}
+                        >
+                            Contact
+                        </h2>
+                        <h2
+                            className="text-3xl font-sans font-bold tracking-tight"
+                            style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
+                        >
+                            Me
+                        </h2>
+                        {/* <p className="font-sans text-gray-500 mb-6 ">Contact Me</p> */}
+                        {/* <h3 className="font-sans font-bold text-4xl md:text-5xl transition-colors" style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}>Let's Talk.</h3> */}
                     </div>
-                    <form className="w-full space-y-4 text-left" onSubmit={(e) => e.preventDefault()}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <form className="w-full space-y-3 text-left" onSubmit={(e) => e.preventDefault()}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div>
                                 <label className="sr-only" htmlFor="name">Name</label>
                                 <input className={inputClass} id="name" name="name" placeholder="Name" type="text" />
@@ -54,11 +62,12 @@ export default function Contact({ isDark }: ContactProps) {
                             <label className="sr-only" htmlFor="message">Message</label>
                             <textarea className={`${inputClass} resize-none`} id="message" name="message" placeholder="Your message..." rows={6}></textarea>
                         </div>
-                        <div className="text-center pt-6">
+                        <div className="text-left pt-4">
                             <button
-                                className={`relative inline-block px-8 py-3 rounded-[2px] font-pixel text-xs tracking-wider uppercase transition-all shadow-pixel-hard hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] overflow-hidden ${isDark
-                                        ? "bg-black text-white hover:brightness-110"
-                                        : "bg-[#f4f4f5] text-black border border-gray-300 hover:bg-[#e4e4e7]"
+                                className={`relative inline-block px-8 py-3 rounded-xl font-sans font-bold text-sm tracking-wider uppercase transition-all shadow-pixel-hard hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] overflow-hidden 
+                                    ${isDark
+                                    ? "bg-black text-white hover:brightness-110"
+                                    : "bg-[#f4f4f5] text-black border border-gray-300 hover:bg-[#e4e4e7]"
                                     }`}
                                 type="submit"
                             >
@@ -67,17 +76,6 @@ export default function Contact({ isDark }: ContactProps) {
                             </button>
                         </div>
                     </form>
-                    <div className="mt-16 flex justify-center gap-6">
-                        <a className={socialIconClass} href="#">
-                            <i className={`devicon-twitter-original ${socialText} group-hover:text-primary transition-colors`}></i>
-                        </a>
-                        <a className={socialIconClass} href="#">
-                            <i className={`devicon-linkedin-plain ${socialText} group-hover:text-primary transition-colors`}></i>
-                        </a>
-                        <a className={socialIconClass} href="#">
-                            <i className={`devicon-github-original ${socialText} group-hover:text-primary transition-colors`}></i>
-                        </a>
-                    </div>
                 </div>
             </AnimatedContent>
         </section>
