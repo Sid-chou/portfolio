@@ -65,18 +65,36 @@ export default function Hero({ isDark }: HeroProps) {
             <div className="max-w-xl mb-8 text-justify">
                 <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} text-[17px] leading-loose font-sans`}>
                     I build interactive web apps using{' '}
-                    <span className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    <a href="https://react.dev/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-react-original text-[#61dafb] text-[14px]"></i> React
-                    </span>,{' '}
-                    <span className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    </a>,{' '}
+                    <a href="https://spring.io/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-spring-plain text-[#6db33f] text-[14px]"></i> Spring
-                    </span> and{' '}
-                    <span className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    </a> and{' '}
+                    <a href="https://nextjs.org/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                        <i className="devicon-nextjs-plain text-[#6db33f] text-[14px]"></i> Next.js
+                    </a> and{' '}
+                    <a href="https://www.mongodb.com/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-mongodb-plain text-[#47a248] text-[14px]"></i> MongoDB
-                    </span>. With a focus in UI design. Enthusiastic in{' '}
-                    <span className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    </a>. With a focus in UI design. Enthusiastic in{' '}
+                    <a href="https://www.oracle.com/java/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-java-plain text-[#f89820] text-[14px]"></i> Java
-                    </span> development.
+                    </a> development.
                 </p>
             </div>
 
@@ -84,8 +102,7 @@ export default function Hero({ isDark }: HeroProps) {
             <div className="flex flex-wrap gap-3 mb-6">
                 <a
                     className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 border font-sans text-[12px] font-medium rounded-xl transition-all group ${isDark ? 'bg-[#111] border-white/20 text-white hover:bg-[#2a2a2a] hover:border-white/40' : 'bg-white border-black/15 text-[#1a1a1a] hover:bg-[#e8e8e8] hover:border-black/30'}`}
-                    href="https://drive.google.com/file/d/1Y9ihJNMLRaat2X5rpGugWz-KkslZtYvz/view?usp=sharing"
-                    target="_blank"
+                    href="/resume"
                     rel="noopener noreferrer"
                 >
                     <span className={`material-symbols-outlined text-[15px] ${isDark ? 'text-gray-400 group-hover:text-gray-200' : 'text-gray-500 group-hover:text-gray-700'}`}>description</span>

@@ -9,52 +9,54 @@ type ProjectsProps = {
 export default function Projects({ isDark }: ProjectsProps) {
     const projects = [
         {
-            title: "NotesBuddy",
-            desc: "AI-powered note taking application that automatically categorizes your thoughts. Features real-time sync and markdown support for developer productivity.",
+            title: "Wallet Warrior",
+            desc: "A digital inventory system that tracks your real-world purchases and alerts you before their warranties reach game over.",
             img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4",
             gradient: "from-indigo-900/40 via-purple-900/40 to-pink-900/20",
             tech: [
                 { icon: "nextjs2", name: "Next.js" },
                 { icon: "typescript", name: "TypeScript" },
                 { icon: "tailwindcss", name: "Tailwind" },
-                { icon: "prisma", name: "Prisma" },
+                { icon: "python", name: "Python" },
+                { icon: "spring", name: "Spring" },
             ],
             status: "operational",
         },
         {
-            title: "Appwrite MCP Server",
-            desc: "A custom Model Context Protocol server implementation for Appwrite, enabling LLMs to directly interact with your Appwrite database and functions securely.",
+            title: "Multi-Agent Financial Advisor",
+            desc: "Fine-tuned multi-agent AI system that mimics a hedge fund pipeline — specialized agents for sentiment, technical, and fundamental analysis collaborate in parallel to deliver grounded, risk-aware stock recommendations for Indian markets",
             img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAh60At3NHnzPmTlG7GlD-w7VEqZadH9A0y7x9pmdEfdcIpbm7UTQkK6izA7JhSQC0Aqy39ddkfsjHpH4UiO6fsH35eXZvIJ6pkHOLoPv2NhjdjnXkt11m5QU5sEqXcaVKbvaB5r1Y2BKDjfxYJYPegaxQGqEUkWzCQtzvKhgzxt8ueETDGFd6hfXMxiY7nOKRVL8n8xi1IvPqd_hE-MzwFLbPJz_nylLBSKpoH0acABy3-nVtIjurzsh-pZwya8FwzU44_TZSDr2M",
             gradient: "from-pink-900/40 via-red-900/40 to-orange-900/20",
             tech: [
-                { icon: "nodejs", name: "Node.js" },
-                { icon: "appwrite", name: "Appwrite" },
-                { icon: "docker", name: "Docker" },
+                { icon: "spring", name: "Spring" },
+                { icon: "python", name: "Python" },
+                { icon: "nextjs2", name: "Next.js" },
             ],
             status: "operational",
         },
         {
-            title: "Syncify",
-            desc: "Real-time collaborative whiteboard for remote teams. Features infinite canvas, shape recognition, and live cursor tracking for up to 50 users.",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4",
+            title: "DevPulse",
+            desc: "A platform that connects to your GitHub, analyzes your coding patterns, predicts burnout risk, and tells you when you're most productive.",
+            img: "/assets/download.jfif",
             gradient: "from-cyan-900/40 via-blue-900/40 to-purple-900/20",
             tech: [
-                { icon: "devicon-react-original", color: "text-[#61dafb]", name: "React" },
-                { icon: "devicon-socketio-original", color: "text-white", name: "Socket.io" },
-                { icon: "redux", name: "Redux" },
+                { icon: "nextjs2", name: "Next.js" },
+                { icon: "spring", name: "Spring Boot" },
+                { icon: "postgresql", name: "PostgreSQL" },
+                { icon: "devicon-apachekafka-original", name: "Kafka" },
+                { icon: "python", name: "Python" },
             ],
             status: "operational",
-            previewUnavailable: true,
         },
         {
-            title: "Pasandida Aurat",
-            desc: "A cultural storytelling platform dedicated to South Asian narratives. Focused on immersive reading experiences with subtle parallax effects.",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDET9fPwtzRTk29Obqk639yLDVq8Jx3w7fLFH909T7Yby8IZ28PdiLl4agNCn7SJysrxTuUVs1vomQvJiyCECuV1TP5_kqlHpHdrsYwd_JgnoxX-GwBZ6cm_TOT7mgPKN07tZ-IMgcqJRizRJ6U_JilF9TBaorxS-8OcdIuqNuKQ5JsKszUooywa_q8jMqRu49KvZ-KXyKgy74tGy58X9FkOxlwvwYuIei5viqQjkBRXaux1bQn6uF4istlINHgtNFXnTL2yNaNYtc",
+            title: "AgentDock",
+            desc: "A browser extension that tiles your AI assistants into one floating workspace so you never context-switch again.",
+            img: "/assets/p4.png",
             gradient: "from-amber-900/40 via-orange-900/40 to-yellow-900/20",
             tech: [
-                { icon: "vuejs", name: "Vue.js" },
-                { icon: "nuxtjs", name: "Nuxt" },
-                { icon: "sass", name: "Sass" },
+                { icon: "js", name: "Vanilla JS" },
+                { icon: "devicon-chrome-plain", color: "text-[#4285F4]", name: "Chrome APIs" },
+                { icon: "tailwindcss", name: "Tailwind CSS" },
             ],
             status: "building",
         },
@@ -101,15 +103,9 @@ export default function Projects({ isDark }: ProjectsProps) {
                         >
                             {/* Image with hover play button */}
                             <div className={`relative w-full overflow-hidden group/thumb bg-gradient-to-br ${project.gradient}`} style={{ height: "200px" }}>
-                                {project.previewUnavailable && (
-                                    <div className="absolute inset-0 flex items-center justify-center font-sans text-xs uppercase tracking-widest z-10"
-                                        style={{ color: isDark ? "#374151" : "#9ca3af" }}>
-                                        Preview Unavailable
-                                    </div>
-                                )}
                                 <img
                                     alt={project.title}
-                                    className={`w-full h-full object-cover object-top transition-all duration-300 group-hover/thumb:blur-sm group-hover/thumb:scale-105 ${project.previewUnavailable ? 'opacity-30' : 'opacity-90'}`}
+                                    className="w-full h-full object-cover object-top transition-all duration-300 group-hover/thumb:blur-sm group-hover/thumb:scale-105 opacity-90"
                                     src={project.img}
                                     referrerPolicy="no-referrer"
                                 />
@@ -151,7 +147,7 @@ export default function Projects({ isDark }: ProjectsProps) {
                                 </p>
                                 <div className="mt-auto">
                                     <p
-                                        className="text-[11px] font-medium uppercase tracking-wider mb-2 font-sans"
+                                        className="text-[11px] font-medium  tracking-wider mb-2 font-sans"
                                         style={{ color: isDark ? "#4b5563" : "#9ca3af" }}
                                     >
                                         Technologies
@@ -162,7 +158,7 @@ export default function Projects({ isDark }: ProjectsProps) {
                                                 {t.icon.startsWith("devicon-") ? (
                                                     <i className={`${t.icon} text-[20px] ${t.color || (isDark ? 'text-white' : 'text-black')}`}></i>
                                                 ) : (
-                                                    <StackIcon name={t.icon} className="w-full h-full" variant={isDark ? "dark" : "light"} />
+                                                    <StackIcon name={t.icon} className="w-full h-full" variant={isDark ? "light" : "dark"} />
                                                 )}
                                             </div>
                                         ))}
