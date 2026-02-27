@@ -77,7 +77,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
         {
             label: "Resume / CV",
             icon: <FileText size={16} />,
-            action: () => { window.open("/resume", "_blank"); setOpen(false); },
+            action: () => { window.open(`${import.meta.env.BASE_URL}#/resume`, "_blank"); setOpen(false); },
         },
         {
             label: "GitHub",
