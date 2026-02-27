@@ -37,7 +37,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "DevPulse",
             desc: "A platform that connects to your GitHub, analyzes your coding patterns, predicts burnout risk, and tells you when you're most productive.",
-            img: "/assets/download.jfif",
+            img: `${import.meta.env.BASE_URL}assets/download.jfif`,
             gradient: "from-cyan-900/40 via-blue-900/40 to-purple-900/20",
             tech: [
                 { icon: "nextjs2", name: "Next.js" },
@@ -51,7 +51,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "AgentDock",
             desc: "A browser extension that tiles your AI assistants into one floating workspace so you never context-switch again.",
-            img: "/assets/p4.png",
+            img: `${import.meta.env.BASE_URL}assets/p4.png`,
             gradient: "from-amber-900/40 via-orange-900/40 to-yellow-900/20",
             tech: [
                 { icon: "js", name: "Vanilla JS" },

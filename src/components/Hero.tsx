@@ -35,7 +35,7 @@ export default function Hero({ isDark }: HeroProps) {
                     <img
                         alt="Sidhant"
                         className="w-full h-full object-cover"
-                        src="/assets/louis_29.webp"
+                        src={`${import.meta.env.BASE_URL}assets/louis_29.webp`}
                     />
                 </div>
                 <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background z-10"></div>
@@ -65,34 +65,34 @@ export default function Hero({ isDark }: HeroProps) {
             <div className="max-w-xl mb-8 text-justify">
                 <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} text-[17px] leading-loose font-sans`}>
                     I build interactive web apps using{' '}
-                    <a href="https://react.dev/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    <a href="https://react.dev/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-react-original text-[#61dafb] text-[14px]"></i> React
                     </a>,{' '}
-                    <a href="https://spring.io/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    <a href="https://spring.io/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-spring-plain text-[#6db33f] text-[14px]"></i> Spring
                     </a> and{' '}
-                    <a href="https://nextjs.org/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    <a href="https://nextjs.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-nextjs-plain text-[#6db33f] text-[14px]"></i> Next.js
                     </a> and{' '}
-                    <a href="https://www.mongodb.com/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    <a href="https://www.mongodb.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-mongodb-plain text-[#47a248] text-[14px]"></i> MongoDB
                     </a>. With a focus in UI design. Enthusiastic in{' '}
-                    <a href="https://www.oracle.com/java/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
+                    <a href="https://www.oracle.com/java/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center align-middle gap-1.5 px-2 py-0.5 mx-1 border text-xs font-medium rounded transition-colors cursor-default select-none -translate-y-[1px] ${isDark ? 'bg-[#323036] border-white/10 text-gray-300 hover:border-white/30' : 'bg-[#e8e8e8] border-black/10 text-gray-600 hover:border-black/30'}`}>
                         <i className="devicon-java-plain text-[#f89820] text-[14px]"></i> Java
                     </a> development.
                 </p>

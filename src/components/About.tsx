@@ -22,7 +22,7 @@ export default function About({ isDark }: AboutProps) {
                     className="text-sm font-sans font-medium tracking-wide"
                     style={{ color: isDark ? "#a1a1aa" : "#71717a" }}
                 >
-                    About   
+                    About
                 </h2>
                 <h2
                     className="text-4xl font-sans font-bold tracking-tight"
@@ -61,7 +61,7 @@ export default function About({ isDark }: AboutProps) {
                             <img
                                 alt="Sidhant"
                                 className="w-full h-full object-cover"
-                                src="/assets/louis_29.webp"
+                                src={`${import.meta.env.BASE_URL}assets/louis_29.webp`}
                             />
                         </div>
                     </div>

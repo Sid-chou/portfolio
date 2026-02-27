@@ -119,7 +119,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                         >
                             <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20 flex-shrink-0">
                                 <img
-                                    src="/assets/louis_29.webp"
+                                    src={`${import.meta.env.BASE_URL}assets/louis_29.webp`}
                                     alt="Sidhant"
                                     className="w-full h-full object-cover"
                                 />
