@@ -6,11 +6,7 @@ A minimal, modern developer portfolio built with React, TypeScript, and Vite. Fe
 
 ---
 
-## Preview
 
-| Dark Mode | Light Mode |
-|-----------|------------|
-| Coming soon | Coming soon |
 
 ---
 
