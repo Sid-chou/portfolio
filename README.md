@@ -6,13 +6,6 @@ A minimal, modern developer portfolio built with React, TypeScript, and Vite. Fe
 
 ---
 
-<<<<<<< HEAD
-=======
-
-
----
-
->>>>>>> 46f4be3faa7a2bbd088ea66a3a6fc255eda77861
 ## Features
 
 - **Dark / Light Theme** -- Toggle between themes with persistent preference via localStorage.
