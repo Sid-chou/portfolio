@@ -11,7 +11,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "Wallet Warrior",
             desc: "A digital inventory system that tracks your real-world purchases and alerts you before their warranties reach game over.",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYatOX1IGjhaTrxNVGdCkXKfgao4pXg79zFnwbbMI5N6Uhl3Z564kHOoT_FhZlrB1cn3ESaH_ILYJpVJArz8AJRjOPhFNG_0BL3xbtpKItSFRgKFl5XNOku0fG6HJrjVwyEXK-suvoU45mFH7TMJkqCJ62YwnNfwUE5KFr11Tg7bct4ks-xZF_LmvZbLFFKHp2O1lrkBpJhzkOMROZpTGH-rCfif5Mrk_pKZYY05vW016gV9HxTh412PeN6Ex_Vp7FagU6oR-qup4",
+            img: `${import.meta.env.BASE_URL}assets/warranty_wall.png`,
             gradient: "from-indigo-900/40 via-purple-900/40 to-pink-900/20",
             tech: [
                 { icon: "nextjs2", name: "Next.js" },
