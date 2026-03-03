@@ -1,5 +1,7 @@
 # sidxcode.me -- Personal Developer Portfolio
 
+![Portfolio Preview](./portfolio.png)
+
 A minimal, modern developer portfolio built with React, TypeScript, and Vite. Features dark/light theming, smooth scroll animations, a live Spotify widget, real-time GitHub contribution graph, and a working contact form.
 
 **Live:** [sidxcode.me](https://sidxcode.me)
