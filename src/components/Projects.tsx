@@ -21,6 +21,8 @@ export default function Projects({ isDark }: ProjectsProps) {
                 { icon: "spring", name: "Spring" },
             ],
             status: "operational",
+            github: "https://github.com/Sid-chou/warranty-wallet.git",
+            demo: "#"
         },
         {
             title: "Multi-Agent Financial Advisor",
@@ -33,6 +35,8 @@ export default function Projects({ isDark }: ProjectsProps) {
                 { icon: "nextjs2", name: "Next.js" },
             ],
             status: "operational",
+            github: "https://github.com/Sid-chou/Autonomous-MultiAgent-Financial-Advisor-System.git",
+            demo: "#"
         },
         {
             title: "DevPulse",
@@ -46,7 +50,9 @@ export default function Projects({ isDark }: ProjectsProps) {
                 { icon: "devicon-apachekafka-original", name: "Kafka" },
                 { icon: "python", name: "Python" },
             ],
-            status: "operational",
+            status: "building",
+            github: "https://github.com/Sid-chou/Dev-Pulse.git",
+            demo: "#"
         },
         {
             title: "AgentDock",
@@ -59,6 +65,8 @@ export default function Projects({ isDark }: ProjectsProps) {
                 { icon: "tailwindcss", name: "Tailwind CSS" },
             ],
             status: "building",
+            github: "https://github.com/Sid-chou/Agent-Dock.git",
+            demo: "#"
         },
     ];
 
@@ -129,11 +137,17 @@ export default function Projects({ isDark }: ProjectsProps) {
                                         {project.title}
                                     </h3>
                                     <div className="flex gap-3">
-                                        <a className="transition-colors" href="#"
+                                        <a className="transition-colors hover:text-blue-500"
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             style={{ color: isDark ? "#6b7280" : "#9ca3af" }}>
                                             <span className="material-symbols-outlined text-[20px]">language</span>
                                         </a>
-                                        <a className="transition-colors" href="#"
+                                        <a className="transition-colors hover:text-blue-500"
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             style={{ color: isDark ? "#6b7280" : "#9ca3af" }}>
                                             <i className="devicon-github-original text-[18px]"></i>
                                         </a>
