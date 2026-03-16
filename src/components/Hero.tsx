@@ -3,7 +3,6 @@ import { FaSpotify } from "react-icons/fa";
 import { Play, Pause } from "lucide-react";
 import { getRecentlyPlayed } from '../utils/spotify';
 import { FaXTwitter, FaLinkedinIn, FaGithub, FaYoutube, FaInstagram, FaPinterestP } from "react-icons/fa6";
-import { motion } from "framer-motion"
 import TextType from '../../components/TextType';
 
 const socialLinks = [
