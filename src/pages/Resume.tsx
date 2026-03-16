@@ -31,7 +31,7 @@ export default function Resume() {
   }
 
   // ← paste your Google Drive /preview URL here
-  const RESUME_EMBED_URL = "https://drive.google.com/file/d/1Y9ihJNMLRaat2X5rpGugWz-KkslZtYvz/preview"
+  const RESUME_EMBED_URL = "https://drive.google.com/file/d/13YP6SJaFLIjJup_MOipEExHsjI70qE46/view?usp=drive_link"
   // OR if hosting locally:
   // const RESUME_EMBED_URL = "/resume.pdf"
 
