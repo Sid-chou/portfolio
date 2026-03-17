@@ -34,7 +34,7 @@ export default function Hero({ isDark }: HeroProps) {
                     <img
                         alt="Sidhant"
                         className="w-full h-full object-cover"
-                        src={`${import.meta.env.BASE_URL}assets/louis_29.webp`}
+                        src={`${import.meta.env.BASE_URL}assets/${isDark ? 'louis_dark.png' : 'louis_29.webp'}`}
                     />
                 </div>
                 <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background z-10"></div>
