@@ -27,7 +27,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "Multi-Agent Financial Advisor",
             desc: "Fine-tuned multi-agent AI system that mimics a hedge fund pipeline — specialized agents for sentiment, technical, and fundamental analysis collaborate in parallel to deliver grounded, risk-aware stock recommendations for Indian markets",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAh60At3NHnzPmTlG7GlD-w7VEqZadH9A0y7x9pmdEfdcIpbm7UTQkK6izA7JhSQC0Aqy39ddkfsjHpH4UiO6fsH35eXZvIJ6pkHOLoPv2NhjdjnXkt11m5QU5sEqXcaVKbvaB5r1Y2BKDjfxYJYPegaxQGqEUkWzCQtzvKhgzxt8ueETDGFd6hfXMxiY7nOKRVL8n8xi1IvPqd_hE-MzwFLbPJz_nylLBSKpoH0acABy3-nVtIjurzsh-pZwya8FwzU44_TZSDr2M",
+            img: `${import.meta.env.BASE_URL}assets/fina.png`,
             gradient: "from-pink-900/40 via-red-900/40 to-orange-900/20",
             tech: [
                 { icon: "spring", name: "Spring" },
