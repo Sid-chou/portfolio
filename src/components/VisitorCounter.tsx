@@ -36,11 +36,17 @@ export default function VisitorCounter({ isDark }: VisitorCounterProps) {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        // Use countapi.xyz — free, no auth, persistent counter
-        // Namespace: "sid-chou-portfolio" | Key: "visitors"
-        const NAMESPACE = "sid-chou-portfolio";
-        const KEY = "visitors-v1";
-        const ENDPOINT = `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+        // We use Abacus (abacus.jasoncameron.dev) because its domain is generic
+        // and completely bypasses ad-blockers (unlike counterapi.xyz which gets blocked).
+        const NAMESPACE = "sidhantchoudhury";
+        const KEY = "portfolio-visits";
+        const SESSION_KEY = "vc_counted_abacus";
+
+        const alreadyCounted = sessionStorage.getItem(SESSION_KEY);
+
+        // Abacus API: /hit increments, /get just reads
+        const action = alreadyCounted ? "get" : "hit";
+        const ENDPOINT = `https://abacus.jasoncameron.dev/${action}/${NAMESPACE}/${KEY}`;
 
         let cancelled = false;
 
@@ -49,8 +55,13 @@ export default function VisitorCounter({ isDark }: VisitorCounterProps) {
                 if (!res.ok) throw new Error("API error");
                 return res.json();
             })
-            .then((data: { value: number }) => {
-                if (!cancelled) setCount(data.value);
+            .then((data: { value?: number }) => {
+                if (!cancelled && data.value !== undefined && data.value !== null) {
+                    setCount(data.value);
+                    if (!alreadyCounted) sessionStorage.setItem(SESSION_KEY, "1");
+                } else if (!cancelled) {
+                    setError(true);
+                }
             })
             .catch(() => {
                 if (!cancelled) setError(true);
@@ -106,8 +117,29 @@ export default function VisitorCounter({ isDark }: VisitorCounterProps) {
                     textAlign: "center",
                 }}
             >
-                {count === null ? "—" : formatCount(count)}
+                {count === null ? (
+                    // Animated loading dot
+                    <span
+                        style={{
+                            display: "inline-block",
+                            width: 5,
+                            height: 5,
+                            borderRadius: "50%",
+                            background: textColor,
+                            opacity: 0.5,
+                            animation: "vc-pulse 1.2s ease-in-out infinite",
+                        }}
+                    />
+                ) : (
+                    formatCount(count)
+                )}
             </span>
+            <style>{`
+                @keyframes vc-pulse {
+                    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+                    50%       { opacity: 0.7; transform: scale(1.1); }
+                }
+            `}</style>
         </div>
     );
 }
