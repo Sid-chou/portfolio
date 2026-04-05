@@ -55,9 +55,9 @@ export default function Projects({ isDark }: ProjectsProps) {
             demo: "#"
         },
         {
-            title: "AgentDock",
-            desc: "A browser extension that tiles your AI assistants into one floating workspace so you never context-switch again.",
-            img: `${import.meta.env.BASE_URL}assets/p4.png`,
+            title: "ApInject",
+            desc: "APInjector is a full-stack, dynamic API mock server and resilience testing tool. It allows developers to quickly spin up mock REST endpoints.",
+            img: `${import.meta.env.BASE_URL}assets/apinject.png`,
             gradient: "from-amber-900/40 via-orange-900/40 to-yellow-900/20",
             tech: [
                 { icon: "js", name: "Vanilla JS" },
@@ -65,7 +65,7 @@ export default function Projects({ isDark }: ProjectsProps) {
                 { icon: "tailwindcss", name: "Tailwind CSS" },
             ],
             status: "building",
-            github: "https://github.com/Sid-chou/Agent-Dock.git",
+            github: "https://github.com/Sid-chou/ApInjector.git",
             demo: "#"
         },
     ];
