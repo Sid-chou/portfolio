@@ -11,7 +11,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "Wallet Warrior",
             desc: "A digital inventory system that tracks your real-world purchases and alerts you before their warranties reach game over.",
-            img: `${import.meta.env.BASE_URL}assets/warranty_wall.png`,
+            img: `${import.meta.env.BASE_URL}images/warranty_wall.png`,
             gradient: "from-indigo-900/40 via-purple-900/40 to-pink-900/20",
             tech: [
                 { icon: "nextjs2", name: "Next.js" },
@@ -27,7 +27,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "Multi-Agent Financial Advisor",
             desc: "Fine-tuned multi-agent AI system that mimics a hedge fund pipeline — specialized agents for sentiment, technical, and fundamental analysis collaborate in parallel to deliver grounded, risk-aware stock recommendations for Indian markets",
-            img: `${import.meta.env.BASE_URL}assets/fina.png`,
+            img: `${import.meta.env.BASE_URL}images/fina.png`,
             gradient: "from-pink-900/40 via-red-900/40 to-orange-900/20",
             tech: [
                 { icon: "spring", name: "Spring" },
@@ -41,7 +41,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "DevPulse",
             desc: "A platform that connects to your GitHub, analyzes your coding patterns, predicts burnout risk, and tells you when you're most productive.",
-            img: `${import.meta.env.BASE_URL}assets/download.jfif`,
+            img: `${import.meta.env.BASE_URL}images/download.jfif`,
             gradient: "from-cyan-900/40 via-blue-900/40 to-purple-900/20",
             tech: [
                 { icon: "nextjs2", name: "Next.js" },
@@ -57,7 +57,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {
             title: "ApInject",
             desc: "APInjector is a full-stack, dynamic API mock server and resilience testing tool. It allows developers to quickly spin up mock REST endpoints.",
-            img: `${import.meta.env.BASE_URL}assets/apinject.png`,
+            img: `${import.meta.env.BASE_URL}images/apinject.png`,
             gradient: "from-amber-900/40 via-orange-900/40 to-yellow-900/20",
             tech: [
                 { icon: "js", name: "Vanilla JS" },

@@ -61,7 +61,7 @@ export default function About({ isDark }: AboutProps) {
                             <img
                                 alt="Sidhant"
                                 className="w-full h-full object-cover"
-                                src={`${import.meta.env.BASE_URL}assets/louis_29.webp`}
+                                src={`${import.meta.env.BASE_URL}images/louis_29.webp`}
                             />
                         </div>
                     </div>
