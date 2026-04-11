@@ -60,9 +60,10 @@ export default function Projects({ isDark }: ProjectsProps) {
             img: `${import.meta.env.BASE_URL}images/apinject.png`,
             gradient: "from-amber-900/40 via-orange-900/40 to-yellow-900/20",
             tech: [
-                { icon: "js", name: "Vanilla JS" },
-                { icon: "devicon-chrome-plain", color: "text-[#4285F4]", name: "Chrome APIs" },
-                { icon: "tailwindcss", name: "Tailwind CSS" },
+                { icon: "nextjs2", name: "Next.js" },
+                { icon: "spring", name: "Spring Boot" },
+                { icon: "mongodb", name: "MongoDB" },
+                { icon: "redis", name: "Redis" },
             ],
             status: "building",
             github: "https://github.com/Sid-chou/ApInjector.git",
