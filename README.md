@@ -115,7 +115,6 @@ The app will start at `http://localhost:3000`.
 
 ## Deployment
 
-This project is configured for automatic deployment to GitHub Pages via GitHub Actions.
 
 ### How it works
 
